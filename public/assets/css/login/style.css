@@ -1,0 +1,70 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f2f3f3;
+}
+.container {
+    width: 28%;
+    height: 40dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #13ac5c;
+    padding: 50px;
+    border-radius: 15px;
+}
+.logo-container {
+    height: 50%;
+}
+.logo-container > img {
+    height: 90%;
+}
+.input-container {
+    margin-top: 30px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.input-container > input {
+    text-align: center;
+    margin: 10px 0;
+    width: 60%;
+    padding: 10px 5px;
+    border-radius: 10px;
+    border: 1px solid black;
+    outline: none;
+    font-size: 16px;
+}
+.input-container > label {
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.input-container > input::placeholder {
+    text-align: center;
+    font-size: 16px;
+}
+.input-container > input:focus::placeholder {
+    color: transparent;
+}
+.login-form {
+    width: 100%;
+}
+@media screen and (max-width: 1400px) {
+    .logo-container {
+        height: 50%;
+    }
+    .logo-container > img {
+        height: 100%;
+    }
+    .input-container {
+        margin-top: 0;
+    }
+}
