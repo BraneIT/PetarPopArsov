@@ -965,6 +965,21 @@ td {
     height: 40dvh;
     width: auto;
 }
+.public-info{
+    width: 100%;
+    height: auto;
+}
+.public-info > p {
+    padding:0px 15px 15px 10px;
+    font-size: 20px;
+}
+.public-info > ul{
+    padding-left: 50px;
+}
+.public-info > a{
+    margin-left: 15px;
+    font-size: 20px;
+}
 @keyframes slide-top {
     0% {
         opacity: 0;

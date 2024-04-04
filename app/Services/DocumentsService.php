@@ -62,36 +62,45 @@ class DocumentsService{
 
         var_dump($data);
         $categoryId = $data['category_id'];
+        
         switch ($categoryId) {
             case 1:
-                $document =new FinansiskiDokumenti;
+                $document =new FinansiskiDokumenti();
+                $folder = 'FinansiskiDokumenti';
                 break;
             case 2:
                 $document = new GodisnjiIzvjestaji();
+                $folder = 'GodisnjiIzvjestaji';
                 break;
             case 3:
                 $document = new RazvojnaPrograma();
+                $folder = 'RazvojnaPrograma';
                 break;
             case 4:
                 $document = new IzvjestajOdSamoevaluacija();
+                $folder = 'IzvjestajOdSamoevaluacija';
                 break;
             case 5:
                 $document = new IntegralnaInspekcija();
+                $folder = 'IntegralnaInspekcija';
                 break;
             case 6:
                 $document = new Takmicenja();
+                $folder = 'Takmicenja';
                 break;
             
             default:
                 // Handle invalid category_id
                 return null;
         }
-        
         // Set document attributes
         $document->title = $data['title'];
         $document->slug = Str::slug($document->title);
-        $document->file = $this->saveDocument($data['file']);
+        $document->file = $this->saveDocument($data['file'], $folder);
         $document->category_id = $data['category_id'];
+        if($data['category_id']==1 && isset($data['finance_category_id'])){
+            $document->finance_category_id =$data['finance_category_id'];
+        }
         $document->year = $data['year'];
         var_dump(isset($data['end_year']));
         if(isset($data['end_year'])){
@@ -99,7 +108,7 @@ class DocumentsService{
         }
         // Save the document
         $document->save();
-        // var_dump($document);
+        var_dump($document);
         return $document;
     }
 
@@ -109,78 +118,107 @@ class DocumentsService{
         // var_dump($oldCategoryId);
         
         // $document = FinansiskiDokumenti::findOrFail($id);
-        
         switch ($oldCategoryId) {
             case 1:
                 $document =FinansiskiDokumenti::findOrFail($id);
+                $folder = 'FinansiskiDokumenti';
                 break;
             case 2:
                 $document =GodisnjiIzvjestaji::findOrFail($id);
+                $folder = 'GodisnjiIzvjestaji';
                 break;
             case 3:
                 $document =RazvojnaPrograma::findOrFail($id);
+                $folder = 'RazvojnaPrograma';
                 break;
             case 4:
                 $document =IzvjestajOdSamoevaluacija::findOrFail($id);
+                $folder = 'IzvjestajOdSamoevaluacija';
                 break;
             case 5:
                 $document = IntegralnaInspekcija::findOrFail($id);
+                $folder = 'IntegralnaInspekcija';
                 break;
             case 6:
                 $document = Takmicenja::findOrFail($id);
+                $folder = 'Takmicenja';
                 break;
             
             default:
                 // Handle invalid category_id
                 return null;
         }
+        
         // var_dump($document);
         if($data['category_id'] !== $oldCategoryId){
             
             switch ($data['category_id']) {
-            case 1:
-                $newDocument = new FinansiskiDokumenti();
-                break;
-            case 2:
-                $newDocument = new GodisnjiIzvjestaji();
-                break;
-            case 3:
-                $newDocument = new RazvojnaPrograma();
-                break;
-            case 4:
-                $newDocument = new IzvjestajOdSamoevaluacija();
-                break;
-            case 5:
-                $newDocument = new  IntegralnaInspekcija();
-                break;
-            case 6:
-                $newDocument = new Takmicenja();
-                break;
-            
-            default:
-                // Handle invalid category_id
-                return null;
+                case 1:
+                    $newDocument =new FinansiskiDokumenti();
+                    $folder = 'FinansiskiDokumenti';
+                    break;
+                case 2:
+                    $newDocument = new GodisnjiIzvjestaji();
+                    $folder = 'GodisnjiIzvjestaji';
+                    break;
+                case 3:
+                    $newDocument = new RazvojnaPrograma();
+                    $folder = 'RazvojnaPrograma';
+                    break;
+                case 4:
+                    $newDocument = new IzvjestajOdSamoevaluacija();
+                    $folder = 'IzvjestajOdSamoevaluacija';
+                    break;
+                case 5:
+                    $newDocument = new IntegralnaInspekcija();
+                    $folder = 'IntegralnaInspekcija';
+                    break;
+                case 6:
+                    $newDocument = new Takmicenja();
+                    $folder = 'Takmicenja';
+                    break;
+                
+                default:
+                    // Handle invalid category_id
+                    return null;
             }
             $newDocument->title = $data['title'];
             $newDocument->year = $data['year'];
-            $newDocument->file = $document->file;
+            var_dump(isset($data['file']));
+            if(isset($data['file'])){
+                $newDocument->file = $this->saveDocument($data['file'], $folder);
+            }
+            else{
+                $newDocument->file = $document->file;
+            }
+            
             $newDocument->slug = Str::slug($document->title);
             $newDocument->category_id = $data['category_id'];
-            $newDocument->save();
-            $document->delete();
+            
+            if($data['category_id']==1 && isset($data['finance_category_id'])){
+                $newDocument->finance_category_id =$data['finance_category_id'];
+            }
+            // var_dump($newDocument);
+            // $newDocument->save();
+            // $document->delete();
             return $newDocument;
         }
         else{
+            
+            if(isset($data['file'])){
+                $document->file = $this->saveDocument($data['file'],$folder);
+            }
+            
             $document->fill($data)->save();
-            var_dump($document);
+            
             return $document;
         }
 
     }
-     public function saveDocument($file)
+     public function saveDocument($file, $folder)
     {
         // Define the directory where you want to store the files
-        $directory = 'assets/documents';
+        $directory = 'assets/documents/' . $folder;
 
         // Generate a unique name for the file
         $fileName = uniqid() . '.'. $file->getClientOriginalExtension();
@@ -194,5 +232,8 @@ class DocumentsService{
     public function getDocuments($id){
          $documents = Documents::where('category_id', $id)->get();
          return $documents;
+    }
+    public function createNewObject($id){
+       
     }
 }

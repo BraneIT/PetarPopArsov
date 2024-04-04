@@ -274,3 +274,44 @@ function validation() {
         validationButton.classList.add("red-button");
     }
 }
+
+const financeCategories = document.getElementsByClassName("finance-category")[0];
+
+let categoryId = documentCategory.value;
+console.log(categoryId);
+documentCategory.addEventListener('change',()=>{
+    if(document.getElementById("editMode")){
+        console.log(true);
+        if(categoryId == 1){
+            financeCategories.style.display = 'block';
+        }
+        else{
+            financeCategories.style.display = 'none';
+        }
+    }
+    else{
+        if(documentCategory.value == 1){
+            
+            financeCategories.style.display = 'block';
+        }
+        else{
+            financeCategories.style.display = 'none';
+        }
+    }
+})
+
+if(documentCategory.value ==1){
+    document.DOMContent
+}
+
+if(document.getElementById("editMode")){
+    document.addEventListener("DOMContentLoaded", ()=>{
+        if (categoryId ==1) {
+            financeCategories.style.display = 'block';    
+        }
+        else{
+            financeCategories.style.display = 'none';    
+        }
+    })
+    // 
+}

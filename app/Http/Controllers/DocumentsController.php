@@ -70,7 +70,8 @@ class DocumentsController extends Controller
             'file' => 'required|file|mimes:pdf|max:2048',
             'category_id' => 'required',
             'year' => 'required',
-            'end_year' => 'nullable'
+            'end_year' => 'nullable',
+            'finance_category_id' =>'nullable'
         ],[
             'file.mimes' => 'Please upload a pdf file'
         ]);
@@ -83,7 +84,8 @@ class DocumentsController extends Controller
         $validatedData = $request->validate([
             'title'=> 'required',
             'category_id' => 'required',
-            'year' => 'required'
+            'year' => 'required',
+            'finance_category_id' =>'nullable'
         ]);
         // $validatedData['category_id'] = $request->category_id;
         $this->documentService->updateDocument($id, $validatedData, $request);

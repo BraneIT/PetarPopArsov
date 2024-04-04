@@ -30,7 +30,12 @@
                 <option value="{{ $category->id }}">{{ $category->name }}</option>
             @endforeach
         </select>
-        
+        <select name="finance_category_id" class="finance-category" style="display: none">
+            
+            <option value="2">Завршни сметки </option>
+            <option value="1">Годишни буџети</option>
+            <option value="3">Годишни финансиски планови по квартали и програми за реализација на буџетот</option>
+        </select>
         <label>Година</label>
         <select name="year" id="year" required class="year">
             <option value="">Одбери година</option>

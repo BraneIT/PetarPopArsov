@@ -22,6 +22,6 @@ class ContactFormController extends Controller
         $mail = new SendMail($mailData);
 
         // Send the email using the Mail facade.
-        Mail::to('brane.panic93@gmail.com')->send($mail);
+        Mail::to('info@ooupetarpoparsov.edu.mk')->send($mail);
     }
 }

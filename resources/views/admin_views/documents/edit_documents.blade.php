@@ -18,7 +18,7 @@
         <label for="file">Select document (PDF or Word)</label>
         <input type="file" class="form-control-file" id="document" name="file" accept="application/pdf,.doc,.docx" style="display: none;" >
         
-        <button type="button" id="documentButton" class="blue-button button">Choose document</button>
+        <button type="button" id="documentButton" class="green-button button">Choose document</button>
 
         <label for="category">Category</label>
         <select name="category_id" class="category" required>
@@ -26,6 +26,12 @@
               @foreach($categories as $category)
                         <option value="{{ $category->id }}" {{ old('category_id', $document->category_id) == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
             @endforeach
+        </select>
+        <select name="finance_category_id" class="finance-category" style="display: none">
+            
+            <option value="2">Завршни сметки </option>
+            <option value="1">Годишни буџети</option>
+            <option value="3">Годишни финансиски планови по квартали и програми за реализација на буџетот</option>
         </select>
         <label for="end_year">Start end</label>
         <select name="year" id="year" class="year" required>>
