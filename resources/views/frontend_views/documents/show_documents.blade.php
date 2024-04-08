@@ -14,7 +14,7 @@
         <object data="{{ asset($document->file) }}#toolbar=0" type="application/pdf" width="100%" height="600px">
         </object>
      
-            <button class="open-pdf" onclick="openPDF('{{ asset($document->file) }}')">Прегледај ПДФ</button>
+            <button class="open-pdf" onclick="openPDF('{{ asset($document->file) }}')">Погледни ПДФ</button>
         <a href="{{ asset($document->file) }}" download="{{$document->name}}">
             <button>Превземи ПДФ</button>
         </a>

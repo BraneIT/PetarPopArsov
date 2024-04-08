@@ -9,18 +9,18 @@
     </div>
 </div>    
 <div class="erasmus-wrapper">
-    {{-- @if($paralelki !== null) --}}
+    @if($paralelki)
     <div class="paralelki-container">
         <div class="year-container"><h1>ОДДЕЛЕНСКА НАСТАВА</h1></div>
-        <img src="{{ asset('images/paralelki/Oddelenska nastava_1711729820.webp') }}" alt="">
+        <img src="{{ asset($paralelki->odelenska) }}" alt="">
     </div>
     <div class="paralelki-container ">
         <div class="year-container"><h1>ПРЕДМЕТНА НАСТАВА</h1></div>
-       <img src="{{ asset('images/paralelki/Predmetni nastavnici_1711729821.webp') }}" alt="">
+       <img src="{{ asset($paralelki->predmetna) }}" alt="">
     </div>
-    {{-- @else
+    @else
         <p>Моментално нема објавени податоци</p>
-    @endif --}}
+    @endif
 </div>
 
 

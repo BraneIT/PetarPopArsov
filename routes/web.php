@@ -78,7 +78,7 @@ Route::middleware('auth')->group(function(){
     Route::delete('/admin/prvacinja/delete/{id}', [PrvacinjaController::class, 'destroy']);
     
     //Paralelki routes
-    Route::get("/admin/paralelki", [ParalelkiController::class, 'index']);
+    Route::get("/admin/paralelki", [ParalelkiController::class, 'index'])->name('admin.paralelki');
     Route::get("/admin/paralelki/add", [ParalelkiController::class, 'create']);
     Route::post("/admin/paralelki/add", [ParalelkiController::class, 'store']);
     Route::delete("/admin/paralelki/{id}", [ParalelkiController::class, 'destroy']);
@@ -104,8 +104,10 @@ Route::get('/integralna_inspekcija', [FrontendController::class, 'integralnaInsp
 Route::get('/izvestaj_od_samoevaluacija', [FrontendController::class, 'evaluacija']);
 Route::get('/pravilnici_i_propisi', [FrontendController::class, 'regulations']);
 Route::get('/pravilnici_i_propisi/{slug}', [FrontendController::class, 'showRegulations']);
-Route::get('ucestvo_na_natprevari_i_ostali_nagradi/{year}', [FrontendController::class, 'showCompetitions']);
-Route::get('ucestvo_na_natprevari_i_ostali_nagradi/{category_id}/{year}/{slug}', [FrontendController::class, 'show_single_finance']);
+Route::get('/ucestvo_na_natprevari_i_ostali_nagradi/{year}', [FrontendController::class, 'showCompetitions']);
+Route::get('/ucestvo_na_natprevari_i_ostali_nagradi/{category_id}/{year}/{slug}', [FrontendController::class, 'show_single_finance']);
+Route::get('/megjuetnicka_integracija_vo_obrazovanieto', [FrontendController::class, 'megjuetnickaIntegracija']);
+Route::get('/megjuetnicka_integracija_vo_obrazovanieto/{category_id}/{year}/{slug}', [FrontendController::class, 'show_single_finance']);
 Route::get('/rakovoditeli_na_paralelki', [FrontendController::class, 'rakovoditeljiNaParalelki']);
 Route::get('/vizija_i_misija', [FrontendController::class, 'misijaIVizija']);
 Route::get('/novosti', [FrontendController::class, 'news']);
@@ -120,6 +122,8 @@ Route::get('/under_construction', [FrontendController::class, 'underConstruction
 Route::get("/planiranja_za_ocenuvanje", [FrontendController::class, 'grades']);
 Route::get('/ucenicka_tela', [FrontendController::class, 'ucenickaTela']);
 Route::get('/raspored_na_smeni', [FrontendController::class, 'smeni']);
+Route::get('/etvining', [FrontendController::class, "etvining"]);
+Route::get('/etvining/{category_id}/{year}/{slug}', [FrontendController::class, "show_single_finance"]);
 Route::fallback(function () {
         return view('errors.404');
     });

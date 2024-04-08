@@ -10,9 +10,11 @@
 </div> 
 <div class="erasmus-wrapper">
     <div class="single-news-wrapper">
+        @if($news->image !== "")
         <div class="show-news-image">
             <img src="{{asset($news->image)  }}" alt="">
         </div>
+        @endif
         <div class="news-content-container">
 
             {!! $news->content !!}

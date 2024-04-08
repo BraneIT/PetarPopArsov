@@ -165,14 +165,20 @@
                         @endif
                     </div>
             </div>
-            <a href="/under_construction">МЕЃУЕТНИЧКА ИНТЕГРАЦИЈА ВО ОБРАЗОВАНИЕТО</a>
+            <a href="/megjuetnicka_integracija_vo_obrazovanieto">МЕЃУЕТНИЧКА ИНТЕГРАЦИЈА ВО ОБРАЗОВАНИЕТО</a>
             
             
             <a href="/under_construction">ПРОЕКТИ <i class="fa-solid fa-angle-down"></i></a>
             <a href="/under_construction">АКТИВНОСТИ</a>
-            <a href="/under_construction">ЕТВИНИНГ <i class="fa-solid fa-angle-down"></i></a>
+            <a href="/etvining">ЕТВИНИНГ</a>
             <a href="/under_construction">ЈАВНИ НАБАВКИ </a>
-            <a href="/prvacinja">ПРВАЧИЊА 2023/2024</a>
+            <?php
+            use Carbon\Carbon;
+
+            $currentDate = Carbon::now();
+            $formattedDate = $currentDate->format('Y-m-d');
+            ?>
+            <a href="/prvacinja">ПРВАЧИЊА </a>
             <a href="/gallery">ГАЛЕРИЈА</a>
             <a href="/kontakt">КОНТАКТ</a>
             <a href="/informacii_od_javen_karakter">ИНФОРМАЦИИ ОД ЈАВЕН КАРАКТЕР</a>

@@ -4,10 +4,12 @@ namespace App\Services;
 
 use App\Models\Erasmus;
 use App\Models\Documents;
+use App\Models\Etvining;
 use App\Models\FinansiskiDokumenti;
 use App\Models\GodisnjiIzvjestaji;
 use App\Models\IntegralnaInspekcija;
 use App\Models\IzvjestajOdSamoevaluacija;
+use App\Models\MedjuetnickaIntegracija;
 use App\Models\RazvojnaPrograma;
 use App\Models\Takmicenja;
 use Illuminate\Support\Str;
@@ -88,7 +90,14 @@ class DocumentsService{
                 $document = new Takmicenja();
                 $folder = 'Takmicenja';
                 break;
-            
+            case 7:
+                $document = new MedjuetnickaIntegracija();
+                $folder = 'MedjuetnickaIntegracija';
+                break;
+            case 8:
+                $document = new Etvining();
+                $folder = 'Etvining';
+                break;
             default:
                 // Handle invalid category_id
                 return null;
@@ -106,9 +115,12 @@ class DocumentsService{
         if(isset($data['end_year'])){
             $document->end_year = $data['end_year'];
         }
+        else{
+            $document->end_year = NULL;
+        }
         // Save the document
         $document->save();
-        var_dump($document);
+        
         return $document;
     }
 
@@ -143,7 +155,14 @@ class DocumentsService{
                 $document = Takmicenja::findOrFail($id);
                 $folder = 'Takmicenja';
                 break;
-            
+            case 7:
+                $newDocument =MedjuetnickaIntegracija::findOrFail($id);
+                $folder = 'MedjuetnickaIntegracija';
+                break;
+            case 8:
+                $newDocument = Etvining::findOrFail($id);
+                $folder = 'Etvining';
+                break;
             default:
                 // Handle invalid category_id
                 return null;
@@ -177,7 +196,14 @@ class DocumentsService{
                     $newDocument = new Takmicenja();
                     $folder = 'Takmicenja';
                     break;
-                
+                case 7:
+                    $newDocument = new MedjuetnickaIntegracija();
+                    $folder = 'MedjuetnickaIntegracija';
+                    break;
+                case 8:
+                    $newDocument = new Etvining();
+                    $folder = 'Etvining';
+                    break;
                 default:
                     // Handle invalid category_id
                     return null;
@@ -217,17 +243,40 @@ class DocumentsService{
     }
      public function saveDocument($file, $folder)
     {
-        // Define the directory where you want to store the files
         $directory = 'assets/documents/' . $folder;
 
-        // Generate a unique name for the file
-        $fileName = uniqid() . '.'. $file->getClientOriginalExtension();
-
+        // Get the original file name without the extension
+        $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+    
+        // Sanitize the file name to remove any unwanted characters except for Cyrillic
+        // This regex now allows Cyrillic characters, along with alphanumeric, hyphen, underscore, and period
+        $sanitizedOriginalName = preg_replace('/[^a-zA-Z0-9\-\_\.\p{Cyrillic}]/u', '_', $originalName);
+    
+        // Generate a unique ID to append to the original file name to ensure uniqueness
+        $uniqueId = uniqid('-', true);
+    
+        // Get the original file extension
+        $extension = $file->getClientOriginalExtension();
+    
+        // Concatenate the sanitized original name, unique ID, and extension to form the new file name
+        $fileName = $sanitizedOriginalName . $uniqueId . '.' . $extension;
+    
         // Move the file to the storage location
         $file->move(public_path($directory), $fileName);
-
+        var_dump($fileName);
         // Return the path to the stored file
         return $directory . '/' . $fileName;
+        // // Define the directory where you want to store the files
+        // $directory = 'assets/documents/' . $folder;
+
+        // // Generate a unique name for the file
+        // $fileName =  '.'. uniqid() . '.'. $file->getClientOriginalExtension();
+
+        // // Move the file to the storage location
+        // $file->move(public_path($directory), $fileName);
+
+        // // Return the path to the stored file
+        // return $directory . '/' . $fileName;
     }
     public function getDocuments($id){
          $documents = Documents::where('category_id', $id)->get();

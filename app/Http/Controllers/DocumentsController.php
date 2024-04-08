@@ -13,6 +13,8 @@ use App\Models\FinansiskiDokumenti;
 use App\Models\IntegralnaInspekcija;
 use Illuminate\Support\Facades\File;
 use App\Models\IzvjestajOdSamoevaluacija;
+use App\Models\Etvining;
+use App\Models\MedjuetnickaIntegracija;
 
 class DocumentsController extends Controller
 {
@@ -113,7 +115,12 @@ class DocumentsController extends Controller
             case 6:
                 $document = Takmicenja::findOrFail($id);
                 break;
-            
+                case 7:
+                $document =MedjuetnickaIntegracija::findOrFail($id);
+                break;
+                case 8:
+                $document = Etvining::findOrFail($id);
+                    break;
             default:
                 // Handle invalid category_id
                 return null;

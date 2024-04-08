@@ -30,7 +30,7 @@
             @if($item->finance_category_id ==2)
                 @if($item->end_year !== NULL)
                 @if ($lastYear !== $item->year || $endYear !== $item->end_year)
-                    <div class="year-container"><h1>{{$item->year}}/{{$item->end_year}}</h1></div>
+                    <div class="year-container"><h1>Завршни сметки {{$item->year}}/{{$item->end_year}} године</h1></div>
                     <a href="godisna_programa_za_rad_na_učilište_i_godišnji_i_polugodišnji izvestaji/{{ $item->category_id }}/{{$item->year}} /{{$item->slug}}">{{$item->title}} </a>
                     <?php $lastYearForEndYears = $item->year;
                         ?>
@@ -43,7 +43,7 @@
             
             @else
                 @if ($lastYear != $item->year && $item->end_year == NULL)
-                            <div class="year-container"><h1>{{$item->year}}</h1></div>
+                            <div class="year-container"><h1>Завршни сметки {{$item->year}} година</h1></div>
                             <a href="godisna_programa_za_rad_na_učilište_i_godišnji_i_polugodišnji izvestaji/{{ $item->category_id }}/{{$item->year}} /{{$item->slug}}">{{$item->title}} </a>
                             <?php $lastYear = $item->year; ?>
                         @else
@@ -61,7 +61,8 @@
 
         <div class="year-container"><h1> Годишни финансиски планови по квартали и програми за реализација на буџетот</h1></div>
         @if ($documents->where('finance_category_id', 3)->isEmpty())
-            <p>Моментално нема објавени документи</p>
+            <a>Моментално нема објавени документи</a
+                >
         @else
             @foreach ($documents as $item)
                 @if ($item->finance_category_id == 3)

@@ -40,7 +40,7 @@
                 <div class="news">
                     <div class="news-image-container">
                         @if($item->image === "")
-                            <img src="{{ asset('assets/images/logo.png') }}" class="default-image">
+                            <img src="{{ asset('assets/images/logo-manji150.webp') }}" class="default-image">
                         @else
                             <img src="{{$item->image}}" alt="" class="news-images">
                         @endif

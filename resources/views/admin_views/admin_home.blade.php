@@ -2,5 +2,5 @@
 @section('title', 'Home')
 
 @section('content')
-    <p>Добродојдовте на админ панел</p>
+    <h1>Добродојдовте на админ панел</h1>
 @endsection
