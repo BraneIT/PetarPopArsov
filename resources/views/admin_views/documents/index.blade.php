@@ -6,7 +6,7 @@
 <div class="add">
     <a href="/admin/documents/add">Додаади</a>
 </div>
-<h2 class="label">All documents categories</h2>
+<h2 class="label">Сите документи</h2>
 <div class="document-categories-container">
     @foreach($categories as $category)
         <div class="document-categories">

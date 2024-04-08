@@ -58,6 +58,7 @@ body {
     width: 100%;
 }
 @media screen and (max-width: 1400px) {
+    
     .logo-container {
         height: 50%;
     }
@@ -66,5 +67,8 @@ body {
     }
     .input-container {
         margin-top: 0;
+    }
+    .input-container > input{
+        width: 70%;
     }
 }

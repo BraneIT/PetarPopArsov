@@ -22,8 +22,9 @@
                 <a href="/admin/gallery">Галерија</a>
                 <a href="/admin/erasmus">Erasmus+</a>
                 <a href="/admin/documents">Документи</a>
-                {{-- <a href="/admin/prvacinja">Првачиња</a>
-                <a href="/admin/paralelki">Паралелки</a> --}}
+                <a href="/admin/prvacinja">Првачиња</a>
+                <a href="/admin/paralelki">Паралелки</a>
+                <a href="/admin/paralelki">Пројекти/активности</a>
             </div>
         </nav>
 

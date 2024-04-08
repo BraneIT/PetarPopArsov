@@ -17,7 +17,7 @@ class ParalelkiController extends Controller
         $this->service = $service;
     }
     public function index(){
-        $paralelki = Paralelki::select("id","odelenska", "predmetna")->first();
+        $paralelki = Paralelki::select('id', 'odelenska', 'predmetna')->first();
         return view('admin_views.paralelki.index', compact('paralelki'));
     }
     public function create(){
@@ -46,7 +46,7 @@ class ParalelkiController extends Controller
         $data->save();
         
 
-        return view('admin_views.paralelki.index')->with('success','Successed insert');
+        return redirect()->route('admin.paralelki');
     }
     public function destroy($id){
         $data = Paralelki::findOrFail($id);
@@ -60,6 +60,6 @@ class ParalelkiController extends Controller
         }
         $data->delete();
 
-        return view('admin_views.paralelki.index');
+        return redirect()->route('admin.paralelki');
     }
 }

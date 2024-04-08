@@ -12,6 +12,8 @@ use App\Models\GodisnjiIzvjestaji;
 use App\Models\FinansiskiDokumenti;
 use App\Models\IntegralnaInspekcija;
 use App\Models\IzvjestajOdSamoevaluacija;
+use App\Models\Etvining;
+use App\Models\MedjuetnickaIntegracija;
 use League\CommonMark\Node\Block\Document;
 
 class AdminDocumentsPageController extends Controller
@@ -60,7 +62,12 @@ class AdminDocumentsPageController extends Controller
             case 6:
                 $documents =Takmicenja::all();
                 break;
-            
+            case 7:
+                $documents =MedjuetnickaIntegracija::all();
+                break;
+            case 8:
+                $documents = Etvining::all();
+                break;    
             default:
                 // Handle invalid category_id
                 return null;

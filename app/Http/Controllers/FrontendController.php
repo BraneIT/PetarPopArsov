@@ -11,11 +11,13 @@ use App\Models\Takmicenja;
 use App\Models\Regulations;
 use Illuminate\Http\Request;
 use App\Models\DocumentCategories;
+use App\Models\Etvining;
 use App\Models\GodisnjiIzvjestaji;
 use App\Services\DocumentsService;
 use App\Models\FinansiskiDokumenti;
 use App\Models\IntegralnaInspekcija;
 use App\Models\IzvjestajOdSamoevaluacija;
+use App\Models\MedjuetnickaIntegracija;
 use App\Models\Paralelki;
 use App\Models\Prvacinja;
 use App\Models\RazvojnaPrograma;
@@ -85,12 +87,17 @@ class FrontendController extends Controller
             case 6:
                 $document = Takmicenja::where('year', $year)->where('slug', $slug)->firstOrFail();
                 break;
-            
+            case 7:
+                $document = MedjuetnickaIntegracija::where('year', $year)->where('slug', $slug)->firstOrFail();
+                break;
+            case 8:
+                $document = Etvining::where('year', $year)->where('slug', $slug)->firstOrFail();
+                break;
             default:
                 // Handle invalid category_id
                 return null;
         }
-        // $document = Documents::where('year', $year)->where('slug', $slug)->firstOrFail();
+        
 
         return view('frontend_views.documents.show_documents', compact('document'));
     }
@@ -147,7 +154,7 @@ class FrontendController extends Controller
         return view('frontend_views.documents.show_regulations', compact('regulation'));
     }
     public function rakovoditeljiNaParalelki(){
-        $paralelki = Paralelki::all();
+        $paralelki = Paralelki::select('odelenska', 'predmetna')->first();
         return view('frontend_views.students.rukovoditelji_na_paralelki', compact('paralelki'));
     }
     public function showContact(){
@@ -196,5 +203,13 @@ class FrontendController extends Controller
     }
     public function smeni(){
         return view('frontend_views.rasporedi.rasporedi_na_smeni');
+    }
+    public function megjuetnickaIntegracija(){
+        $data = MedjuetnickaIntegracija::all();
+        return view('frontend_views.medjuetnicka_integracija', compact('data'));
+    }
+    public function etvining(){
+        $data = Etvining::all();
+        return view('frontend_views.etvining', compact('data'));
     }
 }
