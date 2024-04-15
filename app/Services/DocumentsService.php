@@ -282,7 +282,5 @@ class DocumentsService{
          $documents = Documents::where('category_id', $id)->get();
          return $documents;
     }
-    public function createNewObject($id){
-       
-    }
+    
 }

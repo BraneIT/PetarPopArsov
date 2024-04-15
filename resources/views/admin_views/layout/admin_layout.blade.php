@@ -24,7 +24,7 @@
                 <a href="/admin/documents">Документи</a>
                 <a href="/admin/prvacinja">Првачиња</a>
                 <a href="/admin/paralelki">Паралелки</a>
-                <a href="/admin/paralelki">Пројекти/активности</a>
+                {{-- <a href="/admin/projects">Пројекти</a> --}}
             </div>
         </nav>
 

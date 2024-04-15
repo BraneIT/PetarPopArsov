@@ -1,6 +1,6 @@
 @extends('frontend_views.layout.layout')
 
-@section('title', 'Kuќen red')
+@section('title', $regulation->name)
 
 @section('content')
 <div class="pages-intro">
