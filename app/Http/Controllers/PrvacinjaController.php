@@ -5,19 +5,20 @@ namespace App\Http\Controllers;
 use App\Models\Prvacinja;
 use Illuminate\Http\Request;
 use App\Services\GalleryService;
+use App\Services\PrvacinjaService;
 use Illuminate\Support\Facades\File;
 
 
 class PrvacinjaController extends Controller
 {
-      protected $galleryService;
+      protected $prvacinjaService;
 
-    public function __construct(GalleryService $galleryService)
+    public function __construct(PrvacinjaService $prvacinjaService)
     {
-        $this->galleryService = $galleryService;
+        $this->prvacinjaService = $prvacinjaService;
     }
     public function show(){
-        $prvacinja = Prvacinja::select("image_path", 'content', 'id')->first();
+        $prvacinja = Prvacinja::select("path", 'type', 'id', 'year')->first();
         return view('admin_views.prvacinja.index', compact('prvacinja'));
     }
     public function create(){
@@ -25,22 +26,34 @@ class PrvacinjaController extends Controller
     }
     public function store(Request $request){
         $validatedData = $request->validate([
-            'image_path' => 'required',
+            'type' => 'required',
+            'path' => 'required',
+            'year' => 'required',
             
         ],[
             'image_path.required' => 'Please upload an image.',
            
         ]);
         
-        $imageFile = $request->file($validatedData["image_path"]);
-        var_dump($validatedData['image_path']);
-        $imagePath = $this->galleryService->storeImage($validatedData['image_path']);
-        $data = new Prvacinja();
-        $data->image_path = $imagePath;
-        var_dump($data->image_path);
-        // $data->content = $validatedData['content'];
+        if($validatedData['type'] == 1){
+            $prvacinja = new Prvacinja();
+            $prvacinja->type = $validatedData['type'];
+            $prvacinja->path = $this->prvacinjaService->storeImage($validatedData['path'], $validatedData['year']);
+            $prvacinja->year = $validatedData['year'];
+            $prvacinja->save();
+        }
+        if($validatedData['type'] == 2){
+            $prvacinja = new Prvacinja();
+        }
+        // $imageFile = $request->file($validatedData["image_path"]);
+        // var_dump($validatedData['image_path']);
+        // $imagePath = $this->galleryService->storeImage($validatedData['image_path']);
+        // $data = new Prvacinja();
+        // $data->image_path = $imagePath;
+        // var_dump($data->path);
+        // // $data->content = $validatedData['content'];
 
-        $data->save();
+        // $data->save();
         return redirect('/admin/prvacinja')->with('success', 'News updated successfully!');
     }
     public function destroy($id){

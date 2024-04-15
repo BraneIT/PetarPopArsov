@@ -329,8 +329,16 @@ body {
 .flex-prvacinja > label {
     padding-bottom: 15px;
 }
+
 .flex-prvacinja > button {
     margin-top: 15px;
+}
+#prvacinja-image, #prvacinja-documents{
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
 }
 .prvacinja-wrapper {
     width: 80%;
@@ -370,6 +378,7 @@ body {
 .delete > button{
     width: 80%;
 }
+
 
 @media screen and (max-width: 1700px) {
     .logo-container {

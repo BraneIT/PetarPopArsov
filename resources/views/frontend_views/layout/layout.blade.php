@@ -73,7 +73,7 @@
                 <button class="dropbtn">УЧЕНИЦИ <i class="fa-solid fa-angle-down"></i></button>
                 <div class="dropdown-content">
                     <div class="dropdown">
-                        <button class="dropbtn">ОДЕЛЕНИЈА <i class="fa-solid fa-angle-right"></i></button>
+                        <button class="dropbtn">ОДДЕЛЕНИЈА <i class="fa-solid fa-angle-right"></i></button>
                         <div class="dropdown-content">
                             <a href="/rakovoditeli_na_paralelki">РАКОВОДИТЕЛИ НА ПАРАЛЕЛКИ</a>
                         </div>
@@ -90,9 +90,9 @@
                     <div class="dropdown">
                         <button class="dropbtn">ДОДАТНА НАСТАВА <i class="fa-solid fa-angle-right"></i></button>
                         <div class="dropdown-content">
-                            <a href="/under_construction">ДОДАТНА ОДЕЉЕНСКА НАСТАВА</a>
+                            <a href="/under_construction">ДОДАТНА ОДДЕЉЕНСКА НАСТАВА</a>
                             <a href="/under_construction">ДОДАТНА ПРЕДМЕТНА НАСТАВА</a>
-                            <a href="/under_construction">ДОПУНСКА ОДЕЉЕНСКА НАСТАВА</a>
+                            <a href="/under_construction">ДОПУНСКА ОДДЕЉЕНСКА НАСТАВА</a>
                             <a href="/under_construction">ДОПУНСКА ПРЕДМЕТНА НАСТАВА</a>
                         </div>
                     </div>
@@ -152,7 +152,7 @@
             </div>
             <a href="/novosti">НОВОСТИ</a>
             <div class="dropdown">
-                <button class="dropbtn">УЧЕСТВО НА НАТПРЕВАРИ И ОСВЕНИ НАГРАДИ <i class="fa-solid fa-angle-down"></i></button>
+                <button class="dropbtn">УЧЕСТВО НА НАТПРЕВАРИ И ОСВОЕНИ НАГРАДИ <i class="fa-solid fa-angle-down"></i></button>
                     <div class="dropdown-content  erasmus">
                         @if (sizeof($competitions) !== 0)
                             
