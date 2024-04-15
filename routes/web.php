@@ -17,6 +17,7 @@ use App\Http\Controllers\AdminNewsPagesController;
 use App\Http\Controllers\AdminGaleryPagesController;
 use App\Http\Controllers\AdminDocumentsPageController;
 use App\Http\Controllers\ParalelkiController;
+use App\Http\Controllers\ProjectsController;
 use App\Services\FrontendService;
 
 /*
@@ -82,6 +83,15 @@ Route::middleware('auth')->group(function(){
     Route::get("/admin/paralelki/add", [ParalelkiController::class, 'create']);
     Route::post("/admin/paralelki/add", [ParalelkiController::class, 'store']);
     Route::delete("/admin/paralelki/{id}", [ParalelkiController::class, 'destroy']);
+  
+    //Plans
+    Route::get("/admin/projects", [ProjectsController::class,"index"])->name("projects");
+    Route::get("/admin/projects/add", [ProjectsController::class,"create"])->name("");
+    Route::post("/admin/projects/add", [ProjectsController::class,"store"])->name("project.store");
+    Route::delete("/admin/projects/{id}", [ProjectsController::class,"destroy"])->name("project.destroy");
+
+    //Actions controller
+
     
 });
 

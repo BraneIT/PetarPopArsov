@@ -266,7 +266,7 @@ if (flex) {
 
 ///////////////////
 function validation() {
-    if (editorValue !== "" && imageInput.files.length >= 0) {
+    if ( imageInput.files.length >= 0) {
         validationButton.classList.remove("red-button");
         validationButton.classList.add("green-button");
     } else {
@@ -277,9 +277,9 @@ function validation() {
 
 const financeCategories = document.getElementsByClassName("finance-category")[0];
 
-let categoryId = documentCategory.value;
-console.log(categoryId);
-documentCategory.addEventListener('change',()=>{
+let categoryId = documentCategory?.value;
+
+documentCategory?.addEventListener('change',()=>{
     if(document.getElementById("editMode")){
         console.log(true);
         if(categoryId == 1){
@@ -300,7 +300,7 @@ documentCategory.addEventListener('change',()=>{
     }
 })
 
-if(documentCategory.value ==1){
+if(documentCategory?.value ==1){
     document.DOMContent
 }
 

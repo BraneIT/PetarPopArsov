@@ -12,7 +12,7 @@
     <input type="file" class="form-control-file" id="image" name="image_path" accept="image/*" style="display: none;">
                 <button type="button" id="imageButton" class="red-button button">Одбери слика</button>
     <label>Содржина</label>
-    <textarea class="form-control" id="editor" name="content" required></textarea>
+    {{-- <textarea class="form-control" id="editor" name="content" required></textarea> --}}
 
     <button type="submit" id="validationButton" class="red-button button">Објави</button>
 </form>

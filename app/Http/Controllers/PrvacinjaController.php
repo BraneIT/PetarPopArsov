@@ -26,10 +26,10 @@ class PrvacinjaController extends Controller
     public function store(Request $request){
         $validatedData = $request->validate([
             'image_path' => 'required',
-            'content' => 'required'
+            
         ],[
             'image_path.required' => 'Please upload an image.',
-            'content.required' => 'Please provide the content.',
+           
         ]);
         
         $imageFile = $request->file($validatedData["image_path"]);
@@ -38,7 +38,7 @@ class PrvacinjaController extends Controller
         $data = new Prvacinja();
         $data->image_path = $imagePath;
         var_dump($data->image_path);
-        $data->content = $validatedData['content'];
+        // $data->content = $validatedData['content'];
 
         $data->save();
         return redirect('/admin/prvacinja')->with('success', 'News updated successfully!');
