@@ -9,5 +9,5 @@ class Prvacinja extends Model
 {
     use HasFactory;
     protected $table = 'prvacinja';
-    protected $fillable = ['image_path', 'content'];
+    protected $fillable = ['path', 'type', 'year'];
 }

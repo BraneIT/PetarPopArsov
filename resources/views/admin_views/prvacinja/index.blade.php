@@ -9,8 +9,9 @@
 @if($prvacinja)
 
 <div class="prvacinja-wrapper">
+    {{-- @if($prvacinja->)
     <div class="prvacinja-image-container">
-        <img src="{{ asset($prvacinja->image_path) }}" alt="">
+        <img src="{{ asset($prvacinja->path) }}" alt="">
     </div>
     <div class="prvacinja-content">
         {!! $prvacinja->content !!}
@@ -19,7 +20,7 @@
         @csrf
         @method('DELETE')
         <button type="submit" class="button red-button">Избриши</button>
-    </form>
+    </form> --}}
 </div>
 @else
 <p>Нема пронајдени податоци</p>

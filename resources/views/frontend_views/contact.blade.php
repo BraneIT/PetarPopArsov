@@ -12,7 +12,7 @@
 
     <div class="contact-info">
         <h1>Контактирајте не</h1>
-        <p>email: oou-petarpoparsov-karposh@schools.mk</p>
+        <p>email: ou-petarpoparsov-karposh@schools.mk</p>
         <p>Телефон: +389 3062436</p>
     </div>
     <form method="POST" action="{{ route('contact.send') }}" class="form">
@@ -34,8 +34,8 @@
 
     <div class="contact-info-phone">
         <h1>Контактирајте не</h1>
-        <p>email: email@email.com</p>
-        <p>Телефон: 12345678</p>
+        <p>email: ou-petarpoparsov-karposh@schools.mk</p>
+        <p>Телефон: +389 3062436</p>
     </div>
 </div>
 

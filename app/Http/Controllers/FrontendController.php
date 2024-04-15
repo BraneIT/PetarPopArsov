@@ -179,8 +179,20 @@ class FrontendController extends Controller
     }
     
     public function prvacinja(){
-        $prvacinja = Prvacinja::select("image_path", 'content')->first();
-        return view('frontend_views.prvacinja', compact('prvacinja'));
+        // $prvacinja = Prvacinja::select("image_path", 'content')->first();
+        //, compact('prvacinja')
+        $documents = [
+            [
+                'name' => 'Писмо до родителите',
+                'path' => '/assets/prvacinja/ПИСМО ДО РОДИТЕЛИТЕ.pdf' // Example path, replace with actual path
+            ],
+            [
+                'name' => 'Соопштение за упис на првачиња',
+                'path' => '/assets/prvacinja/Соопштение за упис на првачиња.pdf' // Example path, replace with actual path
+            ]
+        ];
+
+        return view('frontend_views.prvacinja', compact('documents'));
     }
 
     public function publicInformations(){

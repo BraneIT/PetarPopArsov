@@ -7,9 +7,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     editorValue = editor.getData();
                     if (title) {
                         updateButtonColor();
-                    } else {
-                        console.log("flex");
-                        validation();
                     }
                 });
             })
@@ -261,7 +258,32 @@ function endYearOptions() {
 }
 const flex = document.getElementsByClassName("flex-prvacinja");
 const validationButton = document.getElementById("validationButton");
+const prvacinjaType = document.getElementById("prvacijna-type");
+const prvacinjaImage = document.getElementById('prvacinja-image')
+const prvacinjaDocuments = document.getElementById('prvacinja-documents')
+
+
 if (flex) {
+    console.log(prvacinjaType.value);
+    if(prvacinjaType.value ==1){
+        prvacinjaImage.style.display = 'flex';
+    }
+    prvacinjaType.addEventListener("change", ()=>{
+        switch(prvacinjaType.value) {
+            case '1':
+                prvacinjaImage.style.display = 'flex';
+                prvacinjaDocuments.style.display = 'none';
+                break;
+            case '2':
+                prvacinjaImage.style.display = 'none';
+                prvacinjaDocuments.style.display = 'flex';
+                break;
+            default:
+                
+                break;
+        }
+    })
+    
 }
 
 ///////////////////
