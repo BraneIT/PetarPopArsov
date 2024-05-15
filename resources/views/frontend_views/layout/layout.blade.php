@@ -87,6 +87,7 @@
                 <div class="dropdown-content">
                     <a href="/under_construction">НАСТАВНИ ПРОГРАМИ ПО ГЕНЕРАЦИИ И ПРЕДМЕТИ И ЗАКОНИ</a>
                     <a href="/planiranja_za_ocenuvanje">ПЛАНИРАЊА ЗА ОЦЕНУВАЊЕ</a>
+                    <a href="/slobodni_izborni_predmeti_vo_ucebnata_2024_2025">СЛОБОДНИ ИЗБОПРНИ ПРЕДМЕТ</a>
                     <div class="dropdown">
                         <button class="dropbtn">ДОДАТНА НАСТАВА <i class="fa-solid fa-angle-right"></i></button>
                         <div class="dropdown-content">
@@ -107,7 +108,7 @@
                     <div class="dropdown">
                         <button class="dropbtn">РАСПОРЕД НА НАСТАВАТА <i class="fa-solid fa-angle-right"></i></button>
                         <div class="dropdown-content">
-                            <a href="/under_construction">РАСПОРЕД НА ОДЕЛЕНСКА НАСТАВА</a>
+                            <a href="/under_construction">РАСПОРЕД НА ОДДЕЛЕНСКА НАСТАВА</a>
                             <a href="/under_construction">РАСПОРЕД НА ПРЕДМЕТНА НАСТАВА</a>
                         </div>
                     </div>
@@ -172,12 +173,7 @@
             <a href="/under_construction">АКТИВНОСТИ</a>
             <a href="/etvining">ЕТВИНИНГ</a>
             <a href="/under_construction">ЈАВНИ НАБАВКИ </a>
-            <?php
-            use Carbon\Carbon;
-
-            $currentDate = Carbon::now();
-            $formattedDate = $currentDate->format('Y-m-d');
-            ?>
+       
             <a href="/prvacinja">ПРВАЧИЊА </a>
             <a href="/gallery">ГАЛЕРИЈА</a>
             <a href="/kontakt">КОНТАКТ</a>
@@ -185,6 +181,8 @@
         </div>
     </div>
     <div class="content">
+        
+        
         @yield('content')
     </div>
     <div class="footer">

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ActivitiesController;
 use App\Models\News;
 use Laravel\Telescope\Telescope;
 use App\Http\Controllers\Controller;
@@ -18,6 +19,8 @@ use App\Http\Controllers\AdminGaleryPagesController;
 use App\Http\Controllers\AdminDocumentsPageController;
 use App\Http\Controllers\ParalelkiController;
 use App\Http\Controllers\ProjectsController;
+use App\Http\Controllers\PublicProcurementsController;
+use App\Models\PublicProcurements;
 use App\Services\FrontendService;
 
 /*
@@ -37,62 +40,77 @@ Route::post('/login', [LoginController::class, 'authenticate'])->name('login');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // Admin routes
-Route::middleware('auth')->group(function(){
+Route::middleware('auth')->prefix('admin')->group(function(){
     // news routes
-    Route::get('/admin', [Controller::class, 'index']);
-    Route::get('/admin/news', [AdminNewsPagesController::class, 'index']);
-    Route::get('/admin/news/add', [AdminNewsPagesController::class, 'store']);
-    Route::post('/admin/news/add', [NewsController::class, 'store']);
-    Route::get('/admin/news/edit/{id}', [AdminNewsPagesController::class, 'edit'])->name('admin.news.edit');
-    Route::post('/admin/news/edit/{id}', [NewsController::class, 'edit'])->name('admin.news.update');
-    Route::delete('/admin/news/{id}', [NewsController::class, 'destroy'])->name('admin.news.destroy');
-    Route::get('/admin/news/search', [NewsController::class, 'search'])->name('search.news');
+    Route::get('/', [Controller::class, 'index']);
+    Route::get('/news', [AdminNewsPagesController::class, 'index']);
+    Route::get('/news/add', [AdminNewsPagesController::class, 'store']);
+    Route::post('/news/add', [NewsController::class, 'store']);
+    Route::get('/news/edit/{id}', [AdminNewsPagesController::class, 'edit'])->name('admin.news.edit');
+    Route::post('/news/edit/{id}', [NewsController::class, 'edit'])->name('admin.news.update');
+    Route::delete('/news/{id}', [NewsController::class, 'destroy'])->name('admin.news.destroy');
+    Route::get('/news/search', [NewsController::class, 'search'])->name('search.news');
 
 
     // gallery routes
-    Route::get('/admin/gallery', [AdminGaleryPagesController::class, 'index']);
-    Route::get('/admin/gallery/add', [AdminGaleryPagesController::class, 'store']);
-    Route::post('/admin/gallery/add', [GalleryController::class, 'store'])->name('gallery.store');
-    Route::delete('/admin/gallery/{id}', [GalleryController::class, 'destroy'])->name('gallery.destroy');
+    Route::get('/gallery', [AdminGaleryPagesController::class, 'index']);
+    Route::get('/gallery/add', [AdminGaleryPagesController::class, 'store']);
+    Route::post('/gallery/add', [GalleryController::class, 'store'])->name('gallery.store');
+    Route::delete('/gallery/{id}', [GalleryController::class, 'destroy'])->name('gallery.destroy');
 
     // erasmus routes
-    Route::get('/admin/erasmus', [AdminDocumentsPageController::class, 'index_erasmus']);
-    Route::get('/admin/erasmus/add', [AdminDocumentsPageController::class, 'show_add_erasmus']);
-    Route::post('/admin/erasmus/add', [DocumentsController::class, 'store_erasmus']);
-    Route::get('/admin/erasmus/edit/{id}', [AdminDocumentsPageController::class, 'edit_erasmus'])->name('erasmus.edit.show');
-    Route::post('/admin/erasmus/edit/{id}', [DocumentsController::class, 'edit_erasmus'])->name('erasmus.update');
-    Route::delete('/admin/erasmus/{id}', [DocumentsController::class, 'destroy_erasmus'])->name('erasmus.destroy');
+    Route::get('/erasmus', [AdminDocumentsPageController::class, 'index_erasmus']);
+    Route::get('/erasmus/add', [AdminDocumentsPageController::class, 'show_add_erasmus']);
+    Route::post('/erasmus/add', [DocumentsController::class, 'store_erasmus']);
+    Route::get('/erasmus/edit/{id}', [AdminDocumentsPageController::class, 'edit_erasmus'])->name('erasmus.edit.show');
+    Route::post('/erasmus/edit/{id}', [DocumentsController::class, 'edit_erasmus'])->name('erasmus.update');
+    Route::delete('/erasmus/{id}', [DocumentsController::class, 'destroy_erasmus'])->name('erasmus.destroy');
     
     // Documents route
-    Route::get('/admin/documents', [AdminDocumentsPageController::class, 'index_documents']);
-    Route::get('/admin/documents/add', [AdminDocumentsPageController::class, 'create_documents']);
-    Route::post('/admin/documents/add', [DocumentsController::class, 'storeDocuments'])->name('store.documents');
-    Route::get('/admin/documents/category/{id}', [AdminDocumentsPageController::class, 'documentsByCategories'])->name('admin.documents.category');
-    Route::get('/admin/documents/edit/{category_id}/{id}', [AdminDocumentsPageController::class, 'editDocuments']);
-    Route::post('/admin/documents/edit/{category_id}/{id}', [DocumentsController::class, 'updateDocuments'])->name('update.documents');
-    Route::delete('/admin/documents/{category_id}/{id}', [DocumentsController::class, 'destroyDocument'])->name('document.destroy');
+    Route::get('/documents', [AdminDocumentsPageController::class, 'index_documents']);
+    Route::get('/documents/add', [AdminDocumentsPageController::class, 'create_documents']);
+    Route::post('/documents/add', [DocumentsController::class, 'storeDocuments'])->name('store.documents');
+    Route::get('/documents/category/{id}', [AdminDocumentsPageController::class, 'documentsByCategories'])->name('admin.documents.category');
+    Route::get('/documents/edit/{category_id}/{id}', [AdminDocumentsPageController::class, 'editDocuments']);
+    Route::post('/documents/edit/{category_id}/{id}', [DocumentsController::class, 'updateDocuments'])->name('update.documents');
+    Route::delete('/documents/{category_id}/{id}', [DocumentsController::class, 'destroyDocument'])->name('document.destroy');
 
     //Prvacinja routes
-    Route::get('/admin/prvacinja', [PrvacinjaController::class, 'show']);
-    Route::get('/admin/prvacinja/add', [PrvacinjaController::class, 'create']);
-    Route::post('/admin/prvacinja/add', [PrvacinjaController::class, 'store']);
-    Route::delete('/admin/prvacinja/delete/{id}', [PrvacinjaController::class, 'destroy']);
+    Route::get('/prvacinja', [PrvacinjaController::class, 'index'])->name('index.prvacinja');
+    Route::get('/prvacinja/add', [PrvacinjaController::class, 'create']);
+    Route::get('/prvacinja/{year}', [PrvacinjaController::class, 'show'])->name('prvacinja.by.year');
+    Route::post('/prvacinja/add', [PrvacinjaController::class, 'store'])->name('store.prvacinja');
+    Route::delete('/prvacinja/delete/{prvacinja}', [PrvacinjaController::class, 'destroy'])->name('destroy.prvacinja');
     
     //Paralelki routes
-    Route::get("/admin/paralelki", [ParalelkiController::class, 'index'])->name('admin.paralelki');
-    Route::get("/admin/paralelki/add", [ParalelkiController::class, 'create']);
-    Route::post("/admin/paralelki/add", [ParalelkiController::class, 'store']);
-    Route::delete("/admin/paralelki/{id}", [ParalelkiController::class, 'destroy']);
+    Route::get("/paralelki", [ParalelkiController::class, 'index'])->name('admin.paralelki');
+    Route::get("/paralelki/add", [ParalelkiController::class, 'create']);
+    Route::post("/paralelki/add", [ParalelkiController::class, 'store']);
+    Route::delete("/paralelki/{id}", [ParalelkiController::class, 'destroy']);
   
-    //Plans
-    Route::get("/admin/projects", [ProjectsController::class,"index"])->name("projects");
-    Route::get("/admin/projects/add", [ProjectsController::class,"create"])->name("");
-    Route::post("/admin/projects/add", [ProjectsController::class,"store"])->name("project.store");
-    Route::delete("/admin/projects/{id}", [ProjectsController::class,"destroy"])->name("project.destroy");
+    //Projects
+    Route::get("/projects", [ProjectsController::class,"index"])->name('projects');
+    Route::get("/projects/add", [ProjectsController::class,"create"])->name("");
+    Route::post("/projects/add", [ProjectsController::class,"store"])->name("project.store");
+    Route::get('/projects/edit/{id}',[ProjectsController::class, 'edit'])->name('edit.project');
+    Route::post('/projects/edit/{id}',[ProjectsController::class, 'update'])->name('update.project');
+    Route::delete("/projects/{id}", [ProjectsController::class,"destroy"])->name("project.destroy");
 
-    //Actions controller
+    //Activities controller
+    Route::get('/aktivnosti',[ActivitiesController::class, 'index'])->name('activities.index');
+    Route::get('/aktivnosti/add',[ActivitiesController::class, 'create'])->name('activities.create');
+    Route::post('/aktivnosti/add',[ActivitiesController::class, 'store'])->name('activities.store');
+    Route::get('/aktivnosti/edit/{id}',[ActivitiesController::class, 'edit'])->name('activities.edit');
+    Route::put('/aktivnosti/edit/{id}',[ActivitiesController::class, 'update'])->name('activities.update');
+    Route::delete('/aktivnosti/delete/{id}',[ActivitiesController::class, 'destroy'])->name('activities.destroy');
 
-    
+    //Public procurements route
+    Route::get('/javni_nabavki',[PublicProcurementsController::class, 'index'])->name('public.procurements.index');
+    Route::get('/javni_nabavki/add',[PublicProcurementsController::class, 'create'])->name('public.procurements.create');
+    Route::post('/javni_nabavki/add',[PublicProcurementsController::class, 'store'])->name('public.procurements.store');
+    Route::get('/javni_nabavki/edit/{id}',[PublicProcurementsController::class, 'edit'])->name('public.procurements.edit');
+    Route::put('/javni_nabavki/update/{id}',[PublicProcurementsController::class, 'update'])->name('public.procurements.update');
+    Route::delete('/javni_nabavki/destroy/{id}',[PublicProcurementsController::class, 'destroy'])->name('public.procurements.destroy');
 });
 
 // Frontend routes
@@ -134,6 +152,7 @@ Route::get('/ucenicka_tela', [FrontendController::class, 'ucenickaTela']);
 Route::get('/raspored_na_smeni', [FrontendController::class, 'smeni']);
 Route::get('/etvining', [FrontendController::class, "etvining"]);
 Route::get('/etvining/{category_id}/{year}/{slug}', [FrontendController::class, "show_single_finance"]);
+Route::get("/slobodni_izborni_predmeti_vo_ucebnata_2024_2025", [FrontendController::class, 'izborni']);
 Route::fallback(function () {
         return view('errors.404');
     });

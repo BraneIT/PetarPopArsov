@@ -6,6 +6,7 @@ use App\Models\Projekti;
 use Illuminate\Http\Request;
 use App\Services\ProjectsService;
 use Illuminate\Support\Facades\File;
+use SebastianBergmann\CodeCoverage\Report\Xml\Project;
 
 class ProjectsController extends Controller
 {
@@ -33,8 +34,24 @@ class ProjectsController extends Controller
         $this->projectsService->create($validatedData);
         
         
-        return route('projects');
+        return redirect()->route('projects')->with("success","");
     }
+    public function edit($id){
+        $project = Projekti::findOrFail($id);
+        return view('admin_views.projects.edit', compact('project'));
+    }
+    public function update(Request $request, $id){
+        
+        $validatedData = $request->validate([
+            "name"=> "required",
+            "content"=> "required",
+            "image_path"=> "sometimes|nullable|image|max:2048",
+        ]);
+        
+        $this->projectsService->update($id, $validatedData);
+        // return redirect()->route('projects')->with("succes", 'successfully updated');
+    }
+
     public function destroy($id){
         $project = Projekti::findOrFail($id);
         $imagePath = public_path($project->image_path);
@@ -44,6 +61,6 @@ class ProjectsController extends Controller
         }
 
         $project->delete();
-        return route('projects');
+        return redirect()->route('projects');
     }
 }

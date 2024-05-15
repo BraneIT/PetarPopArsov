@@ -6,6 +6,7 @@ use App\Models\Erasmus;
 use App\Models\Takmicenja;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Pagination\Paginator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -22,7 +23,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-         View::composer('frontend_views.layout.layout', function ($view) {
+        View::composer('frontend_views.layout.layout', function ($view) {
             $erasmus = Erasmus::select('name', 'slug')->get();
             $competitions = Takmicenja::distinct()->pluck('year')->toArray();
             $view->with([
@@ -31,5 +32,6 @@ class AppServiceProvider extends ServiceProvider
             ]);
 
         });
+        Paginator::useBootstrap();
     }
 }

@@ -224,9 +224,9 @@ class DocumentsService{
             if($data['category_id']==1 && isset($data['finance_category_id'])){
                 $newDocument->finance_category_id =$data['finance_category_id'];
             }
-            // var_dump($newDocument);
-            // $newDocument->save();
-            // $document->delete();
+            
+            $document->delete();
+            $newDocument->save();
             return $newDocument;
         }
         else{

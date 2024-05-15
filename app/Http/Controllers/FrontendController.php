@@ -224,4 +224,7 @@ class FrontendController extends Controller
         $data = Etvining::all();
         return view('frontend_views.etvining', compact('data'));
     }
+    public function izborni(){
+        return view('frontend_views.classes.izborni');
+    }
 }

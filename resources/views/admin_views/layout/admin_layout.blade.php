@@ -24,7 +24,9 @@
                 <a href="/admin/documents">Документи</a>
                 <a href="/admin/prvacinja">Првачиња</a>
                 <a href="/admin/paralelki">Паралелки</a>
-                {{-- <a href="/admin/projects">Пројекти</a> --}}
+                <a href="/admin/projects">Пројекти</a>
+                <a href="{{route('activities.index')}}">Активности</a>
+                <a href="{{route('public.procurements.index')}}">Јавни набавки</a>
             </div>
         </nav>
 
@@ -33,6 +35,7 @@
                 @csrf
                 <button type="submit">Одјави се</button>
             </form>
+            <p>Memory Usage: {{ convert(memory_get_usage()) }}</p>
             @yield('content')
         </main>
     </div>

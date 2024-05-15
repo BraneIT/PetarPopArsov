@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Prvacinja extends Model
 {
-    use HasFactory;
     protected $table = 'prvacinja';
-    protected $fillable = ['path', 'type', 'year'];
+    protected $fillable = ['title', 'document_path', 'type', 'year'];
+    use HasFactory;
 }

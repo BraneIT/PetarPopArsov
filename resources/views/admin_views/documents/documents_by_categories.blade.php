@@ -24,7 +24,7 @@
             @endforeach
         
     @else
-        <p>No documents found.</p>
+        <p>Нема пронајдени документи</p>
     @endif
 </div>  
 @endsection

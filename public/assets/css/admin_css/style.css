@@ -256,6 +256,19 @@ body {
 
     overflow-y: auto;
 }
+.invalid-feedback{
+    color: red;
+}
+.public-procurement-form{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.public-procurement-form > input{
+    width: 50%;
+}
 .button {
     padding: 8px;
     border: none;
@@ -334,7 +347,7 @@ body {
     margin-top: 15px;
 }
 #prvacinja-image, #prvacinja-documents{
-    display: none;
+ 
     align-items: center;
     justify-content: center;
     flex-direction: column;
@@ -348,15 +361,25 @@ body {
     justify-content: center;
     flex-direction: column;
 }
-.prvacinja-image-container {
-    width: 100%;
+.prvacinja-form{
+    width: 70%;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
 }
-.prvacinja-image-container > img {
+.prvacinja-form > label{
+    padding: 8px 4px;
+}
+.prvacinja-form > input{
     width: 50%;
-    max-height: 600px;
+    text-align: center;
+    padding: 4px 4px;
+}
+.prvacinja-form > select{
+    width: 50%;
+    text-align: center;
+    padding: 4px 4px;
 }
 .delete {
     width: 60%;
@@ -412,5 +435,8 @@ body {
     }
     .document-categories{
         padding: 10px;
+    }
+    .buttons-wrapper{
+        width: 30%;
     }
 }

@@ -23,8 +23,9 @@
     @error('image_path')
         <div class="alert alert-danger">{{ $message }}</div>
     @enderror
+    
     <label>Содржина</label>
-    <input type="text" name="content" required>
+    <textarea class="form-control" id="editor" name="content" ></textarea>
     @error('content')
         <div class="alert alert-danger">{{ $message }}</div>
     @enderror

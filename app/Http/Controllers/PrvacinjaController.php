@@ -3,71 +3,69 @@
 namespace App\Http\Controllers;
 
 use App\Models\Prvacinja;
-use Illuminate\Http\Request;
-use App\Services\GalleryService;
+use App\Http\Requests\StorePrvacinjaRequest;
+use App\Http\Requests\UpdatePrvacinjaRequest;
 use App\Services\PrvacinjaService;
 use Illuminate\Support\Facades\File;
 
-
 class PrvacinjaController extends Controller
 {
-      protected $prvacinjaService;
 
+    protected PrvacinjaService $prvacinjaService;
     public function __construct(PrvacinjaService $prvacinjaService)
     {
         $this->prvacinjaService = $prvacinjaService;
     }
-    public function show(){
-        $prvacinja = Prvacinja::select("path", 'type', 'id', 'year')->first();
-        return view('admin_views.prvacinja.index', compact('prvacinja'));
+
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        $uniqueYears = $this->prvacinjaService->getUniqueYears();
+        return view("admin_views.prvacinja.index", compact("uniqueYears"));
     }
-    public function create(){
-        return view('admin_views.prvacinja.add_prvacinja');
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        return view("admin_views.prvacinja.create");
     }
-    public function store(Request $request){
-        $validatedData = $request->validate([
-            'type' => 'required',
-            'path' => 'required',
-            'year' => 'required',
-            
-        ],[
-            'image_path.required' => 'Please upload an image.',
-           
-        ]);
-        
-        if($validatedData['type'] == 1){
-            $prvacinja = new Prvacinja();
-            $prvacinja->type = $validatedData['type'];
-            $prvacinja->path = $this->prvacinjaService->storeImage($validatedData['path'], $validatedData['year']);
-            $prvacinja->year = $validatedData['year'];
-            $prvacinja->save();
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(StorePrvacinjaRequest $request)
+    {
+
+        // Store the validated data
+        $this->prvacinjaService->store($request->validated());
+    
+        return redirect()->route('index.prvacinja')->with('success', 'Документ је унесен успешно');
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show($year)
+    {
+        // dd($this->prvacinjaService->getPrvacinjaByYear($year));
+       $prvacinja = $this->prvacinjaService->getPrvacinjaByYear($year);
+        return view('admin_views.prvacinja.show', compact('prvacinja'));
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Prvacinja $prvacinja)
+    {      
+        $prvacinja->delete();
+        $documentPath = public_path($prvacinja->document_path);
+        if (File::exists($documentPath)) {   
+            File::delete($documentPath);
         }
-        if($validatedData['type'] == 2){
-            $prvacinja = new Prvacinja();
-        }
-        // $imageFile = $request->file($validatedData["image_path"]);
-        // var_dump($validatedData['image_path']);
-        // $imagePath = $this->galleryService->storeImage($validatedData['image_path']);
-        // $data = new Prvacinja();
-        // $data->image_path = $imagePath;
-        // var_dump($data->path);
-        // // $data->content = $validatedData['content'];
-
-        // $data->save();
-        return redirect('/admin/prvacinja')->with('success', 'News updated successfully!');
+        return redirect()->route('index.prvacinja')->with('success', 'Prvacinja deleted successfully');
     }
-    public function destroy($id){
-        $data = Prvacinja::findOrFail($id);
-        $imagePath = public_path($data->image_path);
-        if (File::exists($imagePath)) {
-            // Delete the image file from the public folder
-            File::delete($imagePath);
-        }
-
-        $data->delete();
-
-        return redirect('/admin/prvacinja')->with('success', 'Deleted succesfully');
-
-    }
-
 }

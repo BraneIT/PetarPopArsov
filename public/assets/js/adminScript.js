@@ -121,14 +121,14 @@ if (documentInput) {
         if (documentInput.files.length > 0) {
             documentButton.classList.remove("red-button");
             documentButton.classList.add("green-button");
-            documentButton.textContent = "Слика је одбрана";
+            documentButton.textContent = "Одбрано";
             if (document.getElementById("name")) {
                 submitButtonChange();
             }
         } else {
             documentButton.classList.remove("green-button");
             documentButton.classList.add("red-button");
-            documentButton.textContent = "Choose document";
+            documentButton.textContent = "Одбери";
         }
     });
 }
@@ -263,30 +263,6 @@ const prvacinjaImage = document.getElementById('prvacinja-image')
 const prvacinjaDocuments = document.getElementById('prvacinja-documents')
 
 
-if (flex) {
-    console.log(prvacinjaType.value);
-    if(prvacinjaType.value ==1){
-        prvacinjaImage.style.display = 'flex';
-    }
-    prvacinjaType.addEventListener("change", ()=>{
-        switch(prvacinjaType.value) {
-            case '1':
-                prvacinjaImage.style.display = 'flex';
-                prvacinjaDocuments.style.display = 'none';
-                break;
-            case '2':
-                prvacinjaImage.style.display = 'none';
-                prvacinjaDocuments.style.display = 'flex';
-                break;
-            default:
-                
-                break;
-        }
-    })
-    
-}
-
-///////////////////
 function validation() {
     if ( imageInput.files.length >= 0) {
         validationButton.classList.remove("red-button");
@@ -336,4 +312,27 @@ if(document.getElementById("editMode")){
         }
     })
     // 
+}
+
+let prvacinjaTitle = document.getElementById('prvacinja-title');
+let prvacinjaForm = document.getElementById('prvacinja-form');
+let prvacinjaSubmit = document.getElementById('submit-prvacinja');
+if(prvacinjaTitle && documentInput){
+    prvacinjaTitle.addEventListener('input', submitPrvacinja)
+    documentInput.addEventListener('input', submitPrvacinja)
+    
+}
+function submitPrvacinja(){
+    
+    if(prvacinjaForm){
+        if(prvacinjaTitle.value !== '' && documentInput.files.length > 0){
+            prvacinjaSubmit.classList.remove("red-button")
+            prvacinjaSubmit.classList.add('green-button')
+        }
+        else{
+            prvacinjaSubmit.classList.remove("green-button")
+            prvacinjaSubmit.classList.add('red-button')
+        }
+    }
+    
 }

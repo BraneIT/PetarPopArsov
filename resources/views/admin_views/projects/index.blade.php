@@ -13,7 +13,7 @@
                 <div class="news-container">
                     <h3>{{ $item->name }}</h3>
                     <div class="buttons-wrapper">
-                        <a href="/admin/documents/edit//{{$item->id}}">Edit</a>
+                        <a href="{{route('edit.project', ['id'=> $item->id])}}">Edit</a>
                     <form action="{{ route('project.destroy', ['id' => $item->id] )}}" method="POST">
                         @csrf
                         @method('DELETE')
