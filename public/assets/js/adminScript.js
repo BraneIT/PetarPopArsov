@@ -8,6 +8,10 @@ document.addEventListener("DOMContentLoaded", function () {
                     if (title) {
                         updateButtonColor();
                     }
+                    if(projectActivityName){
+                        submitProjectAndActivities();
+                        console.log('test');
+                    }
                 });
             })
             .catch((error) => {
@@ -19,38 +23,28 @@ const fileInput = document.getElementById("image");
 const fileInput2 = document.getElementById("image2");
 const imageButton = document.getElementById("imageButton");
 const imageButton2 = document.getElementById("imageButton2");
+const submitParalelkiButton = document.getElementById('submit-paralelki')
 
-if (fileInput) {
-    fileInput.addEventListener("change", function () {
-        if (imageButton.classList.contains("red-button")) {
-            // Check if file is selected
-
-            if (fileInput.files.length > 0) {
-                // Set button style to green
-                imageButton.classList.remove("red-button");
-                imageButton.classList.add("green-button");
-                imageButton.textContent = "Selected";
-            } else {
-                // Set button style to red
-                imageButton.classList.remove("green-button");
-                imageButton.classList.add("red-button");
-                imageButton.textContent = "Choose";
-            }
-        } else {
-            if (fileInput.files.length > 0) {
-                // Set button style to green
-                imageButton.classList.remove("blue-button");
-                imageButton.classList.add("green-button");
-                imageButton.textContent = "Selected";
-            } else {
-                // Set button style to red
-                imageButton.classList.remove("green-button");
-                imageButton.classList.add("blue-button");
-                imageButton.textContent = "Choose";
-            }
-        }
-    });
+if(fileInput && fileInput2){
+    fileInput.addEventListener('input', submitParalelki);
+    fileInput2.addEventListener('input', submitParalelki);
 }
+function submitParalelki(){
+    if(fileInput.files.length > 0){
+        imageButton.classList.remove('red-button');
+        imageButton.classList.add('green-button');
+    }
+    if(fileInput2.files.length > 0){
+        imageButton2.classList.remove('red-button');
+        imageButton2.classList.add('green-button');
+    }
+    if (fileInput.files.length > 0 && fileInput2.files.length > 0) {
+        submitParalelkiButton.classList.remove('red-button');
+        submitParalelkiButton.classList.add('green-button');
+    }
+    
+}
+
 if (imageButton) {
     imageButton.addEventListener("click", function () {
         fileInput.click();
@@ -104,7 +98,7 @@ if (shortContent) {
 }
 
 function updateButtonColor() {
-    if (title.value && shortContent.value && editorValue !== "") {
+    if (title.value && shortContent.value && editorValue !== undefined) {
         submitButton.classList.remove("red-button");
         submitButton.classList.add("green-button");
     } else {
@@ -278,9 +272,10 @@ const financeCategories = document.getElementsByClassName("finance-category")[0]
 let categoryId = documentCategory?.value;
 
 documentCategory?.addEventListener('change',()=>{
+    let categoryId = documentCategory?.value;
     if(document.getElementById("editMode")){
-        console.log(true);
-        if(categoryId == 1){
+        console.log(categoryId);
+        if(documentCategory.value == 1){
             financeCategories.style.display = 'block';
         }
         else{
@@ -335,4 +330,96 @@ function submitPrvacinja(){
         }
     }
     
+}
+
+let projectActivityName = document.getElementById('project-activity-name');
+let projectActivityImage = document.getElementById('project-activity-image');
+let projectActivityImageButton = document.getElementById('project-activity-image-button');
+let submitProjectActivityButton = document.getElementById('submit-project-actvity-button');
+let editProjectActivity = document.getElementById('edit-project-activity');
+
+
+projectActivityImageButton?.addEventListener('click',()=>{
+    projectActivityImage.click();
+})
+
+projectActivityImage?.addEventListener('change', ()=>{
+
+    if(projectActivityImage.files.length > 0){
+        projectActivityImageButton.classList.remove('red-button');
+        projectActivityImageButton.classList.add('green-button');
+        console.log(true);
+        
+    }
+    else{
+        projectActivityImageButton.classList.add('red-button');
+        projectActivityImageButton.classList.remove('green-button');
+        console.log(false);
+    }
+})
+
+projectActivityName?.addEventListener('input', submitProjectAndActivities)
+projectActivityImage?.addEventListener('input', submitProjectAndActivities)
+
+
+
+if(editProjectActivity){
+    submitProjectAndActivities();
+    console.log(true);
+    console.log(editorValue);
+}
+// if(editProjectActivity){
+//     if(projectActivityImage.files.length > 0){
+//         projectActivityImageButton.classList.remove('blue-button');
+//         projectActivityImageButton.classList.add('green-button');
+//     }
+//     else{
+//         projectActivityImageButton.classList.add('blue-button');
+//         projectActivityImageButton.classList.remove('green-button');
+//     }
+// }
+function submitProjectAndActivities(){
+    if(editProjectActivity){
+        if(projectActivityName !== "" && projectActivityImage.files.length >= 0 && editorValue !== ""){
+            submitProjectActivityButton.classList.remove('red-button');
+            submitProjectActivityButton.classList.add('green-button');
+           
+        }
+        else{
+            submitProjectActivityButton.classList.remove('green-button');
+            submitProjectActivityButton.classList.add('red-button');
+        }
+    }
+    else{
+        if(projectActivityName !== "" && projectActivityImage.files.length > 0 && editorValue !== undefined){
+            submitProjectActivityButton.classList.remove('red-button');
+            submitProjectActivityButton.classList.add('green-button');
+        }
+        else{
+            submitProjectActivityButton.classList.remove('green-button');
+            submitProjectActivityButton.classList.add('red-button');
+        }
+    }
+    
+}
+
+let publicProcurementName = document.getElementById('public-procurement-name');
+let publicProcurementLink = document.getElementById('public-procurement-link');
+let submitButtonPublicProcurement = document.getElementById('submit-public-procurement')
+
+if(publicProcurementName && publicProcurementLink){
+    publicProcurementName.addEventListener('input', submitPublicProcurement)
+    publicProcurementLink.addEventListener('input', submitPublicProcurement)
+}
+
+function submitPublicProcurement(){
+    if(publicProcurementName.value !== "" && publicProcurementLink.value !== ""){
+        submitButtonPublicProcurement.classList.remove('red-button');
+        submitButtonPublicProcurement.classList.add('green-button')
+        console.log();
+    }
+    else{
+        submitButtonPublicProcurement.classList.remove('green-button');
+        submitButtonPublicProcurement.classList.add('red-button');
+    }
 }

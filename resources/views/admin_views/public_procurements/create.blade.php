@@ -11,24 +11,24 @@
     @csrf
     <h1>Додади јавну набавку</h1>
     <label for="name">Име</label>
-    <input type="text" name='name'>
+    <input type="text" name='name' id="public-procurement-name">
     @error('name')
         <div class="alert alert-danger">{{ $message }}</div>
     @enderror
     <label for="">Линк</label>
-    <input type="text" name='link'>
+    <input type="text" name='link' id="public-procurement-link">
     @error('link')
         <div class="alert alert-danger">{{ $message }}</div>
     @enderror
     <label for="type">Одбери тип</label>
-    <select name="type">|
+    <select name="type">
         <option value="godisnjiPlanovi">Годишни планиови</option>
         <option value="oglasi">Огласи</option>
     </select>
     @error('type')
         <div class="alert alert-danger">{{ $message }}</div>
     @enderror
-    <label for="year">year</label>
+    <label for="year">Година</label>
     <select name="year">|
         @for ($year = 2020; $year <= 2030; $year++)
             <option value="{{ $year }}">{{ $year }}</option>
@@ -38,7 +38,7 @@
         <div class="alert alert-danger">{{ $message }}</div>
     @enderror
     <br>
-    <button type="submit" class="button red-button">Објави</button>
+    <button type="submit" id="submit-public-procurement" class="button red-button">Објави</button>
 </form>
 
 @endsection

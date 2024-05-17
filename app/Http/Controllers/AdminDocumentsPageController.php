@@ -96,7 +96,8 @@ class AdminDocumentsPageController extends Controller
                 break;
             
         }
+        $fileName = substr($document->file, 37);
         $categories = DocumentCategories::all();
-        return view('admin_views.documents.edit_documents', compact('document', 'categories'));
+        return view('admin_views.documents.edit_documents', compact('document', 'categories','fileName'));
     }
 }

@@ -23,7 +23,7 @@
         <div class="alert alert-danger">{{ $message }}</div>
     @enderror
 
-        <button type="submit">Објави</button>
+        <button type="submit" id="submit-paralelki" class="button red-button">Објави</button>
 </form>
 
 

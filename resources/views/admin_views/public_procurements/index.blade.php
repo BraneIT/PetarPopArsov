@@ -6,6 +6,8 @@
 <div class="add">
     <a href="{{route('public.procurements.create')}}">Додади</a>
 </div>
+
+<div class="public-procurements-wrapper">
 <h1>Годишни планови</h1>
 @foreach ($publicProcurements as $item)
 @if($item->type =='godisnjiPlanovi')
@@ -40,6 +42,7 @@
 </div>
 @endif
 @endforeach
+</div>
 
 
 @endsection

@@ -5,7 +5,7 @@
 @section("content")
 <div class="pages-intro">
     <div class="pages-intro-container">
-        <h1>Слободни изборни предмети во учебната 2024/2025</h1>
+        <h1>Слободни изборни предмети</h1>
     </div>
 </div>  
 <div class="erasmus-wrapper">

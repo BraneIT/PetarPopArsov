@@ -35,7 +35,7 @@
                 @csrf
                 <button type="submit">Одјави се</button>
             </form>
-            <p>Memory Usage: {{ convert(memory_get_usage()) }}</p>
+            
             @yield('content')
         </main>
     </div>

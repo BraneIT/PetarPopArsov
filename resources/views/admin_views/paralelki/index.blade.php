@@ -3,10 +3,18 @@
 @section('title', 'Паралелки')
 
 @section('content')
+@if($paralelki)
+<div class="add">
+<p>Обришите паралелки за да додадете нови</p>
+</div>
+@else
 <div class="add">
     <a href="/admin/paralelki/add">Додади</a>
 </div>
-
+@endif
+{{-- <div class="add">
+    <a href="/admin/paralelki/add">Додади</a>
+</div> --}}
 @if($paralelki)
     <div class="paralelki">
         <h1>Сите паралелки</h1>

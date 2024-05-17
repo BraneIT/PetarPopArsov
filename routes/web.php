@@ -111,6 +111,9 @@ Route::middleware('auth')->prefix('admin')->group(function(){
     Route::get('/javni_nabavki/edit/{id}',[PublicProcurementsController::class, 'edit'])->name('public.procurements.edit');
     Route::put('/javni_nabavki/update/{id}',[PublicProcurementsController::class, 'update'])->name('public.procurements.update');
     Route::delete('/javni_nabavki/destroy/{id}',[PublicProcurementsController::class, 'destroy'])->name('public.procurements.destroy');
+
+    //Memory check
+    Route::get('/dev', [Controller::class,'dev']);
 });
 
 // Frontend routes
@@ -152,7 +155,7 @@ Route::get('/ucenicka_tela', [FrontendController::class, 'ucenickaTela']);
 Route::get('/raspored_na_smeni', [FrontendController::class, 'smeni']);
 Route::get('/etvining', [FrontendController::class, "etvining"]);
 Route::get('/etvining/{category_id}/{year}/{slug}', [FrontendController::class, "show_single_finance"]);
-Route::get("/slobodni_izborni_predmeti_vo_ucebnata_2024_2025", [FrontendController::class, 'izborni']);
+Route::get("/slobodni_izborni_predmeti", [FrontendController::class, 'izborni']);
 Route::fallback(function () {
         return view('errors.404');
     });

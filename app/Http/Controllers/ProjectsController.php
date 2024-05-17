@@ -38,7 +38,8 @@ class ProjectsController extends Controller
     }
     public function edit($id){
         $project = Projekti::findOrFail($id);
-        return view('admin_views.projects.edit', compact('project'));
+        $fileName = substr($project->image_path, 16);
+        return view('admin_views.projects.edit', compact('project','fileName'));
     }
     public function update(Request $request, $id){
         

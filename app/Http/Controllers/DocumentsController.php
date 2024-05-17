@@ -92,6 +92,7 @@ class DocumentsController extends Controller
         // $validatedData['category_id'] = $request->category_id;
         $this->documentService->updateDocument($id, $validatedData, $request);
 
+        
         //Redirect back to a specific route or page
         return redirect()->route('admin.documents.category', ['id' => $validatedData['category_id']]);
     }

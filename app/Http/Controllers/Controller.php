@@ -13,4 +13,7 @@ class Controller extends BaseController
     public function index(){
         return view('admin_views.admin_home');
     }
+    public function dev(){
+        return view('admin_views.dev');
+    }
 }

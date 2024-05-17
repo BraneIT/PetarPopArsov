@@ -87,7 +87,7 @@
                 <div class="dropdown-content">
                     <a href="/under_construction">НАСТАВНИ ПРОГРАМИ ПО ГЕНЕРАЦИИ И ПРЕДМЕТИ И ЗАКОНИ</a>
                     <a href="/planiranja_za_ocenuvanje">ПЛАНИРАЊА ЗА ОЦЕНУВАЊЕ</a>
-                    <a href="/slobodni_izborni_predmeti_vo_ucebnata_2024_2025">СЛОБОДНИ ИЗБОПРНИ ПРЕДМЕТ</a>
+                    <a href="/slobodni_izborni_predmeti">СЛОБОДНИ ИЗБОПРНИ ПРЕДМЕТИ</a>
                     <div class="dropdown">
                         <button class="dropbtn">ДОДАТНА НАСТАВА <i class="fa-solid fa-angle-right"></i></button>
                         <div class="dropdown-content">

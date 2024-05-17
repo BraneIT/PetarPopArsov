@@ -25,7 +25,7 @@
             @endforeach
         
     @else
-        <p>Нема пронајдени пројекти</p>
+        <p>Нема пронајдени активности</p>
     @endif
 </div>
 @endsection

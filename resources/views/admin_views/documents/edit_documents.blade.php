@@ -19,7 +19,8 @@
         <input type="file" class="form-control-file" id="document" name="file" accept="application/pdf,.doc,.docx" style="display: none;" >
         
         <button type="button" id="documentButton" class="green-button button">Choose document</button>
-
+        <label for="">Име тренутног фајла</label>
+        <p>{{$fileName}}</p>
         <label for="category">Category</label>
         <select name="category_id" class="category" required>
             <option value="">Select Category</option>
