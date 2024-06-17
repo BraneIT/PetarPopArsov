@@ -3,6 +3,7 @@
 namespace App\Services;
 use App\Models\News;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Str;
 
 class NewsService
 {
@@ -19,10 +20,10 @@ class NewsService
         // Create a new news item
         
         $news->title = $data['title'];
+        $news->slug = Str::slug($news->title);
         $news->short_content = $data['short_content'];
         $news->content = $data['content'];
 
-        
         $news->save();
 
         return $news;
@@ -35,11 +36,9 @@ class NewsService
             $data['image'] = $this->uploadImage($data['image']);
             $news->image = $data['image'];
         }
-        
-        
+      
         $news->fill($data)->save();
-         
-       
+  
         return $news;
     }
 
@@ -52,7 +51,4 @@ class NewsService
         $optimizedImage->save(public_path('images/news') . '/' . $imageName);
         return 'images/news/' . $imageName;
     }
-
-
-
 }

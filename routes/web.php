@@ -33,7 +33,7 @@ use App\Services\FrontendService;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-// Login routes
+// Auth routes
 
 Route::get('/login', [LoginController::class, 'getLogin'])->name('login_view');
 Route::post('/login', [LoginController::class, 'authenticate'])->name('login');
@@ -50,7 +50,6 @@ Route::middleware('auth')->prefix('admin')->group(function(){
     Route::post('/news/edit/{id}', [NewsController::class, 'edit'])->name('admin.news.update');
     Route::delete('/news/{id}', [NewsController::class, 'destroy'])->name('admin.news.destroy');
     Route::get('/news/search', [NewsController::class, 'search'])->name('search.news');
-
 
     // gallery routes
     Route::get('/gallery', [AdminGaleryPagesController::class, 'index']);
@@ -118,7 +117,7 @@ Route::middleware('auth')->prefix('admin')->group(function(){
 
 // Frontend routes
 
-Route::get('/', [FrontendController::class, 'index']);
+Route::get('/', [FrontendController::class, 'index'])->name('index');
 Route::get('/gallery', [FrontendController::class, 'gallery']);
 Route::get('/erasmus/{slug}', [FrontendController::class, 'show_erasmus']);
 Route::get('/statut', [FrontendController::class, 'statut']);
@@ -142,10 +141,10 @@ Route::get('/megjuetnicka_integracija_vo_obrazovanieto/{category_id}/{year}/{slu
 Route::get('/rakovoditeli_na_paralelki', [FrontendController::class, 'rakovoditeljiNaParalelki']);
 Route::get('/vizija_i_misija', [FrontendController::class, 'misijaIVizija']);
 Route::get('/novosti', [FrontendController::class, 'news']);
-Route::get('/novosti/{id}', [FrontendController::class, 'newsShow']);
+Route::get('/novosti/{slug}', [FrontendController::class, 'newsShow']);
 Route::get('/kontakt', [FrontendController::class, 'showContact']);
 Route::post('/kontakt', [ContactFormController::class, 'sendEmail'])->name('contact.send');
-Route::get("/prvacinja", [FrontendController::class, 'prvacinja']);
+Route::get("/prvacinja/{year}", [FrontendController::class, 'prvacinja']);
 Route::get('/informacii_od_javen_karakter', [FrontendController::class, 'publicInformations']);
 Route::get('/za_nasiot_patron', [FrontendController::class, 'patron']);
 Route::get('/raspored_na_zvonenje', [FrontendController::class, 'rasporedNaZvonenje']);
@@ -155,7 +154,19 @@ Route::get('/ucenicka_tela', [FrontendController::class, 'ucenickaTela']);
 Route::get('/raspored_na_smeni', [FrontendController::class, 'smeni']);
 Route::get('/etvining', [FrontendController::class, "etvining"]);
 Route::get('/etvining/{category_id}/{year}/{slug}', [FrontendController::class, "show_single_finance"]);
+Route::get('/javni_nabavki', [FrontendController::class, 'publicProcurements']);
+Route::get('/aktivnosti/{year}', [FrontendController::class, 'activities']);
+Route::get('/aktivnosti/{year}/{slug}', [FrontendController::class, 'showActivities'])->name('aktivities.show');
+Route::get('/projekti/{year}', [FrontendController::class, 'projects']);
+Route::get('/projekti/{year}/{slug}', [FrontendController::class, 'projectsShow'])->name('projects.show');
 Route::get("/slobodni_izborni_predmeti", [FrontendController::class, 'izborni']);
+Route::get("/licna_karta", [FrontendController::class, 'licnaKarta']);
+Route::get("/razvoj_i_istorijat", [FrontendController::class, 'razvojIIstorijat']);
+Route::get("/organizacija", [FrontendController::class, 'organizacija']);
+Route::get("/prijemni_denovi_na_ucilisteto", [FrontendController::class, 'prijemniDenoviNaUciliste']);
+Route::get("/prijemni_denovi_na_nastavnicite", [FrontendController::class, 'prijemniDenoviNaNastavnici']);
+Route::get("/raspored_na_oddelenska_nastava", [FrontendController::class, 'oddelenskaNastava']);
+Route::get("/raspored_na_predmetna_nastava", [FrontendController::class, 'predmetnaNastava']);
 Route::fallback(function () {
         return view('errors.404');
     });

@@ -2,13 +2,11 @@
 
 @section('title', "Визија и мисија")
 
-
+@section('page_header')
+<h1>ВИЗИЈА И МИСИЈА</h1>
+@endsection
 @section('content')
-<div class="pages-intro">
-    <div class="pages-intro-container">
-        <h1>ВИЗИЈА И МИСИЈА</h1>
-    </div>
-</div>
+
 <div class="erasmus-wrapper">
     <div class="documents-container">
         <div class="year-container"><h1>Нашата визија</h1></div>

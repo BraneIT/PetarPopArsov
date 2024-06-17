@@ -22,10 +22,11 @@ class StoreActivitiesRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'nullable',
+            'name' => 'required',
             'slug' => 'nullable',
-            'image_path' => 'nullable',
+            'image_path' => 'required',
             'content' => 'required',
+            'year' => 'required',
         ];
     }
 }

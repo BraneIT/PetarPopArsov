@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Activities;
 use App\Models\News;
 use App\Models\Erasmus;
 use App\Models\Gallery;
@@ -19,10 +20,14 @@ use App\Models\IntegralnaInspekcija;
 use App\Models\IzvjestajOdSamoevaluacija;
 use App\Models\MedjuetnickaIntegracija;
 use App\Models\Paralelki;
+use App\Models\Projekti;
 use App\Models\Prvacinja;
+use App\Models\PublicProcurements;
 use App\Models\RazvojnaPrograma;
 use App\Services\FrontendService;
 use Spatie\FlareClient\View;
+use Illuminate\Support\Facades\DB;
+use SebastianBergmann\CodeCoverage\Report\Xml\Project;
 
 class FrontendController extends Controller
 {   
@@ -173,26 +178,16 @@ class FrontendController extends Controller
         $news = News::orderBy('created_at', 'desc')->get();
         return view('frontend_views.news.news', compact('news'));
     }
-    public function newsShow($id){
-        $news = News::findOrFail($id);
+    public function newsShow($slug){
+        $news = News::where('slug',$slug)->first();
         return view('frontend_views.news.news_show', compact('news'));
     }
     
-    public function prvacinja(){
-        // $prvacinja = Prvacinja::select("image_path", 'content')->first();
-        //, compact('prvacinja')
-        $documents = [
-            [
-                'name' => 'Писмо до родителите',
-                'path' => '/assets/prvacinja/ПИСМО ДО РОДИТЕЛИТЕ.pdf' // Example path, replace with actual path
-            ],
-            [
-                'name' => 'Соопштение за упис на првачиња',
-                'path' => '/assets/prvacinja/Соопштение за упис на првачиња.pdf' // Example path, replace with actual path
-            ]
-        ];
-
-        return view('frontend_views.prvacinja', compact('documents'));
+    public function prvacinja($year){
+        
+        $prvacinja = Prvacinja::where('year', $year)->get();
+        $year = str_replace('-', '/', $year);
+        return view('frontend_views.prvacinja', compact('prvacinja', 'year'));
     }
 
     public function publicInformations(){
@@ -226,5 +221,51 @@ class FrontendController extends Controller
     }
     public function izborni(){
         return view('frontend_views.classes.izborni');
+    }
+    public function publicProcurements(){
+        $publicProcurements = PublicProcurements::all();
+        return view("frontend_views.public_procurements", compact("publicProcurements"));
+    }
+    public function projects($year){
+        $projects = Projekti::where('year',$year)->get();
+        return view('frontend_views.projects.index', compact('projects','year'));
+    }
+    public function projectsShow($year, $slug){
+        
+        
+        $project = Projekti::where('year',$year)->where('slug', $slug)->first();
+        
+        return view('frontend_views.projects.show', compact('project'));
+    }
+    public function activities($year){
+        $activities = Activities::where('year', $year)->get();
+        return view('frontend_views.activities.index', compact('activities', 'year'));
+    }
+    public function showActivities($year,$slug){
+       
+        echo $slug;
+        $activity = Activities::where('year',$year)->where('slug', $slug)->first();
+        return view('frontend_views.activities.show', compact('activity'));
+    }
+    public function licnaKarta(){
+        return view('frontend_views.za_nas.licna_karta');
+    }
+    public function razvojIIstorijat(){
+        return view('frontend_views.za_nas.razvoj_i_istorijat');
+    }
+    public function organizacija(){
+        return view('frontend_views.za_nas.organizacija');
+    }
+    public function prijemniDenoviNaUciliste(){
+        return view('frontend_views.za_nas.prijemni_denovi.prijemni_denovi_na_ucilisteto');
+    }
+    public function prijemniDenoviNaNastavnici(){
+        return view('frontend_views.za_nas.prijemni_denovi.prijemni_denovi_na_nastavnicite');
+    }
+    public function oddelenskaNastava(){
+        return view('frontend_views.rasporedi.raspored_na_odelenska');
+    }
+    public function predmetnaNastava(){
+        return view('frontend_views.rasporedi.raspored_na_predmetna');
     }
 }

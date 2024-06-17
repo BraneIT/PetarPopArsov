@@ -2,12 +2,14 @@
 
 @section('title', 'Дома')
 
-
+@section('page_header')
+<h1>{{$project->name}} {{$project->start_date}}-{{$project->end_date}}</h1>
+@endsection
 @section('content')
 
 <div class="pages-intro">
     <div class="pages-intro-container">
-        <h1>{{$project->name}} {{$project->start_date}}-{{$project->end_date}}</h1>
+        
     </div>
 </div>  
 <div class="erasmus-wrapper">

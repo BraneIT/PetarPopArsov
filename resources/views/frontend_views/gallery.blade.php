@@ -2,12 +2,12 @@
 
 @section('title', 'Галерија')
 
+@section('page_header')
+<h1>Галерија</h1>
+@endsection
+   
 @section('content')
-<div class="pages-intro">
-    <div class="pages-intro-container">
-        <h1>ГАЛЕРИЈА</h1>
-    </div>
-</div>    
+
 <div id="gallery">
     <div class="gallery-wrapper">
         @foreach($images as $item)
@@ -28,18 +28,5 @@
   </span>
 </div>
 
-{{-- <script>
-function openModal(imageSrc) {
-  var modal = document.getElementById("myModal");
-  var modalImg = document.getElementById("modalImage");
-  modal.style.display = "block";
-  modalImg.src = imageSrc;
-}
-
-function closeModal() {
-  var modal = document.getElementById("myModal");
-  modal.style.display = "none";
-}
-</script> --}}
 
 @endsection

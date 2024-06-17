@@ -15,9 +15,9 @@ class ProjectsService{
         $project = new Projekti();
         $project->name = $data["name"];
         $project->slug =Str::slug($project->name);
+        $project->year = $data["year"];
         $project->content = $data["content"];
         var_dump(isset($data["image_path"]));
-      
         $project->image_path = $imagePath;
         $project->save();
         return $project;
@@ -47,8 +47,8 @@ class ProjectsService{
         }
         $project->name = $data['name'];
         $project->content = $data['content'];
+        $project->year = $data['year'];
         $project->save();
-        echo "true";
         return $project;
     }
 }

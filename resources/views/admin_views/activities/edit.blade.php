@@ -7,6 +7,8 @@
 <div class="add">
     <a href="{{route('activities.index')}}">Откажи</a>
 </div>
+<div class="form-container">
+    <h2>Додади активност</h2>
 <form method="POST" action="{{route('activities.update',['id'=>$activity->id])}}" enctype="multipart/form-data">
     @csrf
     @method('PUT')
@@ -23,11 +25,16 @@
         <div class="alert alert-danger">{{ $message }}</div>
     @enderror
     <label>Содржина</label>
-    <textarea name="content" id="" cols="30" rows="10" required>{{$activity->content}}</textarea>
+    <textarea name="content" id="editor" cols="30" rows="10" required>{{$activity->content}}</textarea>
     @error('content')
         <div class="alert alert-danger">{{ $message }}</div>
     @enderror
-
+    <select name="year" id="project-activity-year">
+        @for ($i = 2020; $i < 2030; $i++)
+            <option value="{{ $i . "-" . ($i+1)}}" @if ($activity->year == $i) selected @endif>{{$i . "-" . ($i+1) }}</option>
+            <option value='{{$i . "-" . ($i+1)}}'>{{$i . "-" . ($i+1)}}</option>
+        @endfor
+    </select>
     <button type="submit" id="submit-button" class="red-button button">Објави</button>
 </form>
 </div>

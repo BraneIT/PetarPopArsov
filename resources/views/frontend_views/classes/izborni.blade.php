@@ -1,13 +1,11 @@
 @extends("frontend_views.layout.layout")
 
 @section("title", "Слободни изборни предмети во учебната 2024/2025")
-
+@section('page_header')
+<h1>Слободни изборни предмети</h1>
+@endsection
 @section("content")
-<div class="pages-intro">
-    <div class="pages-intro-container">
-        <h1>Слободни изборни предмети</h1>
-    </div>
-</div>  
+
 <div class="erasmus-wrapper">
 
     <div class="documents-container">

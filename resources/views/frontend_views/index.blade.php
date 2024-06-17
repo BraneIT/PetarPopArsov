@@ -86,8 +86,17 @@
         <div class="video-label">
             <h1>Детска химна за „Карпош“ кој го сакаме</h1>
         </div>
-        <object width="425" height="350" data="http://www.youtube.com/v/mYGZfv4GyS8" type="application/x-shockwave-flash" class="hidden"><param name="src" value="http://www.youtube.com/v/mYGZfv4GyS8" /></object>
+       <a class="video-link" href="https://youtu.be/mYGZfv4GyS8?si=KqWuSumVPnsYNZSb"> <img class="video-img" src="{{asset('assets/images/Thumbnail-min.PNG')}}" alt=""> </a>
     </section>
-    
+    <section class="links" class="hidden">
+        <h1>Корисни линкови:</h1>
+        <div class="institutions">
+          <a href="https://mon.gov.mk/"><img src="{{asset('assets/images/usefulLinks/Ministerstvo.png')}}" alt=""></a>
+          <a href="https://karpos.gov.mk/"><img src="{{asset('assets/images/usefulLinks/Karposh.jpg')}}" alt=""></a>
+          <a href="https://dic.edu.mk/"><img src="{{asset('assets/images/usefulLinks/IspitenCentar.jpeg')}}" alt=""></a>
+          <a href="https://ednevnik.edu.mk/"><img src="{{asset('assets/images/usefulLinks/ednevnik-logo.png')}}" alt=""></a>
+          <a href="https://www.bro.gov.mk/"><img src="{{asset('assets/images/usefulLinks/Biro.png')}}" alt=""></a>
+        </div>
+      </section>
     
 @endsection

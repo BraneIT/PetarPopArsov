@@ -2,13 +2,11 @@
 
 @section('title', 'Интегрална инспекција')
 
-
+@section('page_header')
+<h1>Интегрална инспекција</h1>
+@endsection
 @section('content')
-<div class="pages-intro">
-    <div class="pages-intro-container">
-        <h1>ИНТЕГРАЛНА ИНСПЕКЦИЈА</h1>
-    </div>
-</div>  
+ 
 <div class="erasmus-wrapper">
     @if(sizeof($documents)==0)
         <div class="documents-container">     

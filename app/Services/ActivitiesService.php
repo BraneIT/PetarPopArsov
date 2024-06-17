@@ -17,11 +17,12 @@ class ActivitiesService{
         return Activities::findOrFail($id);
     }
     public function store($data){
-       
+        
         $activity = new Activities();
         $activity->name = $data['name'];
         $activity->image_path = $this->storeImage($data['image_path']);
         $activity->slug = Str::slug($activity->name);
+        $activity->year = $data['year'];
         $activity->content = $data['content'];
         return $activity->save();
         
@@ -44,6 +45,7 @@ class ActivitiesService{
         $activity->name = $data['name'];
         $activity->slug = Str::slug($activity->name);
         $activity->content = $data['content'];
+        $activity->year = $data['year'];
         $activity->save();
         return $activity;
     }

@@ -2,12 +2,11 @@
 
 @section('title', 'Контакт')
 
+@section('page_header')
+<h1>Контакт</h1>
+@endsection
 @section('content')
-<div class="pages-intro">
-    <div class="pages-intro-container">
-        <h1>КОНТАКТ</h1>
-    </div>
-</div>  
+
 <div class="form-container">
 
     <div class="contact-info">

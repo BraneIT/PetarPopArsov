@@ -2,12 +2,12 @@
 
 @section('title', "Распоред на смени")
 
+@section('page_header')
+
+<h1>Распоред на смени</h1>
+@endsection
 @section('content')
-<div class="pages-intro">
-    <div class="pages-intro-container">
-        <h1>Распоред на смени</h1>
-    </div>
-</div> 
+
 <div class="erasmus-wrapper">
     <div class="documents-container">
         <div class="year-container"><h1>РАСПОРЕД НА СМЕНИ ЗА УЧЕБНАТА 2023/24</h1></div>

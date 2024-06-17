@@ -17,6 +17,18 @@ class PrvacinjaController extends Controller
         $this->prvacinjaService = $prvacinjaService;
     }
 
+
+    /**
+     * 
+     * 
+     *  
+     */ 
+    public function getAllUniqueYears(){
+        
+    }
+
+    
+
     /**
      * Display a listing of the resource.
      */

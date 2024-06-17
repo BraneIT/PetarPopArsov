@@ -2,12 +2,13 @@
 
 @section("title", 'За нашиот патрон')
 
+@section('page_header')
+
+<h1>За нашиот патрон</h1>
+@endsection
+
 @section('content')
-<div class="pages-intro">
-    <div class="pages-intro-container">
-        <h1>За нашиот патрон</h1>
-    </div>
-</div>
+
 <div class="erasmus-wrapper">
     <div class="documents-container">
         <div class="year-container">

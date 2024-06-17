@@ -466,6 +466,7 @@
 .image-container img {
     height: 100%;
     width: 100%; /* Ensure image fits container */
+    object-fit: cover; 
     cursor: pointer;
 }
 .modal {
@@ -518,8 +519,12 @@
     justify-content: space-between;
     flex-direction: column;
 }
-#video > object {
+.video-link{
     width: 50%;
+    height: 100%;
+}
+.video-img{
+    width: 100%;
     height: 100%;
 }
 
@@ -906,6 +911,11 @@ td {
     justify-content: center;
     flex-direction: column;
     width: 60%;
+    
+}
+
+.news-content-container > p{
+    font-size: 20px;
 }
 .news-content-container > ul {
     margin-left: 5%;
@@ -982,6 +992,52 @@ td {
     margin-left: 15px;
     font-size: 20px;
 }
+
+.project-activities-wrapper{
+    width: 100%;
+    font-size: 20px;
+}
+.project-activity-image{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.project-activity-content{
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+}
+.links{
+    width: 100%;
+    text-align: center;
+    padding-top: 5rem;
+    height:50dvh;
+}
+.links h1{
+    font-size: 32px;
+    font-weight: 700;
+    padding: 20px 0 50px 0;
+}
+.institutions{
+    width: 60%;
+    height: 10dvh;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: row;
+}
+.institutions a {
+    width: 15%;
+    height: 100%;
+}
+.institutions a img{
+    width: 100%;
+    height: 100%;
+}
+
 @keyframes slide-top {
     0% {
         opacity: 0;
@@ -1122,9 +1178,7 @@ td {
     .location-info {
         margin-top: 30px;
     }
-    #video > object {
-        margin-bottom: 30px;
-    }
+
     .news-container {
         grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     }
@@ -1149,7 +1203,7 @@ td {
         display: none;
     }
 }
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1100px) {
     body {
         width: 100%;
     }
@@ -1215,7 +1269,7 @@ td {
     .hamburger-menu-btn {
         display: block;
         border: none;
-        background-color: #fff100;
+        background-color: #f9ed32;
         border-radius: 5px;
     }
     .menu-items.active {
@@ -1359,12 +1413,13 @@ td {
     }
     #video {
         padding: 50px 0;
+        height: auto;
     }
     .video-label {
         font-size: 10px;
         margin-bottom: 15px;
     }
-    #video > object {
+    .video-link {
         width: 90%;
         height: 30dvh;
     }
@@ -1490,6 +1545,23 @@ td {
         width: 90%;
         text-align: center;
     }
+    .project-activity-image{
+        width: 100%;
+    }
+    .links{
+        padding: 25px 0;
+        height: 100dvh;
+    }
+    .institutions{
+        width: 90%;
+        height: 60dvh;
+        flex-direction: column;
+    }
+    .institutions a{
+        width: 50%;
+        margin: 10px 0;
+    }
+   
 }
 @keyframes expandMenu {
     0% {

@@ -33,7 +33,7 @@
     <select name="year" required>
         <option value="2023-2024">2023/2024</option>
         <option value="2024-2025">2024/2025</option>
-        <option value="2025-2026">2035/2026</option>
+        <option value="2025-2026">2025/2026</option>
         <option value="2026-2027">2026/2027</option>
         <option value="2027-2028">2027/2028</option>
         <option value="2028-2029">2028/2029</option>

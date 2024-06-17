@@ -29,6 +29,12 @@
     @error('content')
         <div class="alert alert-danger">{{ $message }}</div>
     @enderror
+    <select name="year" id="project-activity-year">
+        @for ($i = 2020; $i < 2030; $i++)
+            
+            <option value='{{$i . "-" . ($i+1)}}'>{{$i . "-" . ($i+1)}}</option>
+        @endfor
+    </select>
     <br>
     <button type="submit" id="submit-project-actvity-button" class="red-button button">Објави</button>
 </form>

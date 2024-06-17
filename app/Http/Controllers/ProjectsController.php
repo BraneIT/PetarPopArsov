@@ -27,6 +27,7 @@ class ProjectsController extends Controller
             "name"=> "required",
             "content"=> "required",
             "image_path"=> "required|image|max:2048",
+            'year' => 'required'
         ],[
             "name.required"=> "Name is required",
             "image_path.required"=> "Image is required",
@@ -47,6 +48,7 @@ class ProjectsController extends Controller
             "name"=> "required",
             "content"=> "required",
             "image_path"=> "sometimes|nullable|image|max:2048",
+            'year'=>'required',
         ]);
         
         $this->projectsService->update($id, $validatedData);

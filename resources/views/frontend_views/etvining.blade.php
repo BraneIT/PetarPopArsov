@@ -2,12 +2,11 @@
 
 @section('title', 'Меѓуетничка интеграција во образованието')
 
+@section('page_header')
+<h1>Е-твининг</h1>
+@endsection
 @section('content')
-<div class="pages-intro">
-    <div class="pages-intro-container">
-        <h1>Меѓуетничка интеграција во образованието</h1>
-    </div>
-</div>  
+
 <div class="erasmus-wrapper">
     @if(sizeof($data)==0)
         <div class="documents-container">     

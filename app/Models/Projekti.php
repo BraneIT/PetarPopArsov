@@ -9,5 +9,5 @@ class Projekti extends Model
 {
     use HasFactory;
     protected $table = 'projects';
-    protected $fillable = ['name', 'image_path' , 'content', 'slug'];
+    protected $fillable = ['name', 'image_path' , 'content', 'slug', 'year'];
 }

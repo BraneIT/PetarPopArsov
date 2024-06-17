@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Caveat:wght@400..700&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="{{ asset('assets/css/frontend_css/style.css') }}">
     <link rel="icon" type="image/png" href="{{ asset('assets/images/logo-manji.png') }}">
@@ -41,16 +41,16 @@
             <div class="dropdown">
             <button class="dropbtn" id="dropdownButton">ЗА НАС <i class="fa-solid fa-angle-down" id="dropdownIcon"></i></button> 
             <div class="dropdown-content">
-                <a href="/under_construction">ЛИЧНА КАРТА</a>
-                <a href="/under_construction">РАЗВОЈ И ИСТОРИЈАТ</a>
-                <a href="/under_construction">ОРГАНИЗАЦИЈА</a>
+                <a href="/licna_karta">ЛИЧНА КАРТА</a>
+                <a href="/razvoj_i_istorijat">РАЗВОЈ И ИСТОРИЈАТ</a>
+                <a href="/organizacija">ОРГАНИЗАЦИЈА</a>
                 <a href="/za_nasiot_patron">ЗА НАШИОТ ПАТРОН</a>
                 <a href="/vizija_i_misija">ВИЗИЈА И МИСИЈА</a>
                 <div class="dropdown">
                     <button class="dropbtn">ПРИЕМНИ ДЕНОВИ <i class="fa-solid fa-angle-right"></i></button>
                     <div class="dropdown-content">
-                        <a href="/under_construction">ПРИЕМНИ ДЕН НА УЧИЛИШТЕТО</a>
-                        <a href="/under_construction">ПРИЕМНИ ДЕН НА НАСТАВНИЦИТЕ</a>
+                        <a href="/prijemni_denovi_na_ucilisteto">ПРИЕМНИ ДЕН НА УЧИЛИШТЕТО</a>
+                        <a href="/prijemni_denovi_na_nastavnicite">ПРИЕМНИ ДЕН НА НАСТАВНИЦИТЕ</a>
                     </div>
                 </div>
                 
@@ -108,8 +108,8 @@
                     <div class="dropdown">
                         <button class="dropbtn">РАСПОРЕД НА НАСТАВАТА <i class="fa-solid fa-angle-right"></i></button>
                         <div class="dropdown-content">
-                            <a href="/under_construction">РАСПОРЕД НА ОДДЕЛЕНСКА НАСТАВА</a>
-                            <a href="/under_construction">РАСПОРЕД НА ПРЕДМЕТНА НАСТАВА</a>
+                            <a href="/raspored_na_oddelenska_nastava">РАСПОРЕД НА ОДДЕЛЕНСКА НАСТАВА</a>
+                            <a href="/raspored_na_predmetna_nastava">РАСПОРЕД НА ПРЕДМЕТНА НАСТАВА</a>
                         </div>
                     </div>
                     <a href="/raspored_na_smeni">РАСПОРЕД НА СМЕНИ</a>
@@ -168,20 +168,50 @@
             </div>
             <a href="/megjuetnicka_integracija_vo_obrazovanieto">МЕЃУЕТНИЧКА ИНТЕГРАЦИЈА ВО ОБРАЗОВАНИЕТО</a>
             
+            <div class="dropdown">
+                <button class="dropbtn">ПРОЈЕКТИ <i class="fa-solid fa-angle-down"></i></button>
+                    <div class="dropdown-content">
+                        @foreach ($projects as $year)
+                            <a href="/projekti/{{$year}}">ПРОЈЕКТИ {{$year}}</a>
+                        @endforeach
+                    </div>
+                
+            </div>
+            {{-- <a href="/under_construction">ПРОЕКТИ <i class="fa-solid fa-angle-down"></i></a> --}}
+            <div class="dropdown">
+                <button class="dropbtn">АКТИВНОСТИ <i class="fa-solid fa-angle-down"></i></button>
+                    <div class="dropdown-content">
+                        @foreach ($activities as $year)
+                            <a href="/aktivnosti/{{$year}}">АКТИВНОСТИ {{$year}}</a>
+                        @endforeach
+                    </div>
+                
+            </div>
             
-            <a href="/under_construction">ПРОЕКТИ <i class="fa-solid fa-angle-down"></i></a>
-            <a href="/under_construction">АКТИВНОСТИ</a>
             <a href="/etvining">ЕТВИНИНГ</a>
-            <a href="/under_construction">ЈАВНИ НАБАВКИ </a>
-       
-            <a href="/prvacinja">ПРВАЧИЊА </a>
+            <a href="/javni_nabavki">ЈАВНИ НАБАВКИ </a>
+            <div class="dropdown">
+                <button class="dropbtn">ПРВАЧИЊА</button>
+                <div class="dropdown-content">
+                    @foreach ($prvacinjaUniqueYears as  $item)
+                        <a href="/prvacinja/{{$item}}">{{$item}}</a>
+                    @endforeach
+                </div>
+            </div>
+            {{-- <a href="/prvacinja">ПРВАЧИЊА </a> --}}
             <a href="/gallery">ГАЛЕРИЈА</a>
             <a href="/kontakt">КОНТАКТ</a>
             <a href="/informacii_od_javen_karakter">ИНФОРМАЦИИ ОД ЈАВЕН КАРАКТЕР</a>
         </div>
     </div>
     <div class="content">
-        
+        @if(Request::path() !== '/' && Request::path() !== '/under_construction')
+        <div class="pages-intro">
+            <div class="pages-intro-container">
+                @yield('page_header')
+            </div>
+        </div>  
+        @endif
         
         @yield('content')
     </div>

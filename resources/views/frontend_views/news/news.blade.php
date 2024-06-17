@@ -32,7 +32,7 @@
                     </div>
                     <div class="news-button">
 
-                        <a href="/novosti/{{ $item->id }}">Прочитај повеке</a>
+                        <a href="/novosti/{{ $item->slug }}">Прочитај повеке</a>
                     </div>
                 </div>
             @endforeach

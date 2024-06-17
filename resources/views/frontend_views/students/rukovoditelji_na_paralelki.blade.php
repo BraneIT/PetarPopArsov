@@ -2,12 +2,12 @@
 
 @section('title', 'Раководители на паралелки')
 
+@section('page_header')
+<h1>РАКОВОДИТЕЛИ НА ПАРАЛЕЛКИ</h1>
+@endsection
+
 @section('content')
-<div class="pages-intro">
-    <div class="pages-intro-container">
-        <h1>РАКОВОДИТЕЛИ НА ПАРАЛЕЛКИ</h1>
-    </div>
-</div>    
+  
 <div class="erasmus-wrapper">
     @if($paralelki)
     <div class="paralelki-container">

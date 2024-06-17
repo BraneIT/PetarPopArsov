@@ -9,5 +9,5 @@ class Activities extends Model
 {
     use HasFactory;
     protected $table = 'activities';
-    protected $fillable = ['content', 'slug', 'image_path', 'name'];
+    protected $fillable = ['content', 'slug', 'image_path', 'name', 'year'];
 }

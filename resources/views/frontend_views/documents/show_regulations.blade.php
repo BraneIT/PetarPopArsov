@@ -15,7 +15,7 @@
         {{-- <iframe src="{{ asset($document->file) }}#toolbar=0" title='SOME_TITLE' ></iframe> --}}
         {{-- <embed src="{{asset($project->path)}}#toolbar=0" type=""> --}}
         <a href="{{ asset($regulation->file) }}" download="{{$regulation->name}}">
-            <button>Преузми ПДФ</button>
+            <button>Превземи ПДФ</button>
         </a>
     </div>
 </div>

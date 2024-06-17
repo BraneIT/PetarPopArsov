@@ -2,12 +2,12 @@
 
 @section('title', 'Планирања за оценување')
 
+
+@section('page_header')
+<h1>Планирања за оценување</h1>
+@endsection
 @section('content')
-<div class="pages-intro">
-    <div class="pages-intro-container">
-        <h1>Планирања за оценување</h1>
-    </div>
-</div>  
+
 <div class="erasmus-wrapper">
 
     <div class="documents-container">
